@@ -2,6 +2,7 @@
 title: 'Teaching Claude to score hotel leads'
 description: "A building permit tells you what got built. It does not tell you whether to call someone about it. That is Claude's job."
 pubDate: '2026-04-01'
+draft: true
 heroImage: '../../assets/blog-placeholder-1.jpg'
 ---
 

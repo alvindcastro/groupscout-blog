@@ -2,6 +2,7 @@
 title: 'Cracking the PDF — no API, no problem (mostly)'
 description: 'Richmond publishes building permits as weekly PDFs with no API. A pure Go PDF library returned zero rows. Then came the parser bug that looked like a config bug. Here is how all of it got fixed.'
 pubDate: '2026-03-31'
+draft: true
 heroImage: '../../assets/blog-placeholder-5.jpg'
 ---
 
