@@ -7,7 +7,7 @@ import { defineConfig } from 'astro/config';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://alvindcastro.github.io',
-	base: '/groupscout-blog',
+	base: '/groupscout-blog/',
 	trailingSlash: 'always',
 	integrations: [mdx(), sitemap()],
 });
