@@ -21,7 +21,7 @@ What if you could get there first?
 
 If a building permit for a $40M commercial project just got issued in Richmond, that project is probably starting in 8–12 weeks. The GC is about to hire crews. Those crews are going to need somewhere to stay. And right now, nobody from any hotel has called the GC yet — because nobody knows yet.
 
-That's the window. That's where blockscout is supposed to live.
+That's the window. That's where groupscout is supposed to live.
 
 The concept is simple: monitor public data sources for signals, run them through AI to figure out which ones actually matter, and surface the best ones to the sales team before the window closes.
 
@@ -29,7 +29,7 @@ The concept is simple: monitor public data sources for signals, run them through
 
 ## What I'm building
 
-[blockscout](https://github.com/alvindcastro/blockscout) is a Go backend that does a few things:
+[groupscout](https://github.com/alvindcastro/groupscout) is a Go backend that does a few things:
 
 1. **Collects** raw project data from public sources — building permit databases, government contract awards, RSS feeds, infrastructure project pages
 2. **Enriches** each record using the Claude API — estimates crew size, project duration, likelihood of out-of-town workers, and generates a priority score with a plain-English reason

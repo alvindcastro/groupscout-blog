@@ -1,6 +1,6 @@
 ---
 title: "Where it stands — and what's next"
-description: 'The pipeline runs. Real permits are flowing. Here is the current state of blockscout and what comes next.'
+description: 'The pipeline runs. Real permits are flowing. Here is the current state of groupscout and what comes next.'
 pubDate: '2026-04-03'
 draft: true
 heroImage: '../../assets/blog-placeholder-3.jpg'
@@ -73,4 +73,4 @@ The pipeline works. The problem it's solving is real. The person it's being buil
 
 That's fair. So am I.
 
-The code is at [github.com/alvindcastro/blockscout](https://github.com/alvindcastro/blockscout). This blog will keep tracking the build as it progresses. Next up: wiring in the scheduler so this stops being something I run manually and starts being something that just runs.
+The code is at [github.com/alvindcastro/groupscout](https://github.com/alvindcastro/groupscout). This blog will keep tracking the build as it progresses. Next up: wiring in the scheduler so this stops being something I run manually and starts being something that just runs.

@@ -43,9 +43,9 @@ So the situation is: the signal exists, it's public, it's updated weekly, and th
 
 ---
 
-## What blockscout does with that
+## What groupscout does with that
 
-The idea behind blockscout is simple: read the permits, filter for the ones that matter, figure out which ones are worth a phone call, and tell the sales team.
+The idea behind groupscout is simple: read the permits, filter for the ones that matter, figure out which ones are worth a phone call, and tell the sales team.
 
 In practice that means:
 - Scraping Richmond's weekly permit PDF
