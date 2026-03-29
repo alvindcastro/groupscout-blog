@@ -2,7 +2,6 @@
 title: 'The stack — Go, SQLite, and a $0.001 AI call'
 description: 'The technology choices behind groupscout, and why each one made sense for a background data pipeline built by one person on weekends.'
 pubDate: '2026-03-29'
-heroImage: '../../assets/blog-placeholder-3.jpg'
 ---
 
 One of the things I wanted to do with this blog is actually explain the technology choices — not just list them, but explain *why*. Because the choices are usually more interesting than the stack itself.

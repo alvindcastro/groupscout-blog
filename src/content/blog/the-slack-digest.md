@@ -3,7 +3,6 @@ title: 'The Slack digest — no dashboard, no problem'
 description: 'The entire "UI" of groupscout is a Slack message. Here is why that was the right call, and what it actually looks like.'
 pubDate: '2026-04-02'
 draft: true
-heroImage: '../../assets/blog-placeholder-2.jpg'
 ---
 
 At some point in every side project, you have to decide where the output goes.

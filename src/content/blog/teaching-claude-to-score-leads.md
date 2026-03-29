@@ -3,7 +3,6 @@ title: 'Teaching Claude to score hotel leads'
 description: "A building permit tells you what got built. It does not tell you whether to call someone about it. That is Claude's job."
 pubDate: '2026-04-01'
 draft: true
-heroImage: '../../assets/blog-placeholder-1.jpg'
 ---
 
 A building permit tells you: a $1.2M warehouse is being built at 12500 Vulcan Way, issued to Safara Cladding Inc, filed by ABC Developments Ltd.
