@@ -1,8 +1,8 @@
-# blockscout-blog
+# groupscout-blog
 
-A blog documenting the building of [blockscout](https://github.com/alvindcastro/blockscout) — a group lodging demand intelligence tool for hotel sales teams.
+A blog documenting the building of [groupscout](https://github.com/alvindcastro/groupscout) — a group lodging demand intelligence tool for hotel sales teams.
 
-My wife is a sales manager at Sandman Hotel Vancouver Airport. I'm a software developer. This is what happens when those two worlds collide.
+My wife is a sales manager at a hotel. I'm a software developer. This is what happens when those two worlds collide.
 
 The project monitors public data sources for signals that indicate incoming groups needing room blocks — construction crews, sports teams, film productions, government contractors — and surfaces prioritized leads to the sales team via Slack.
 
