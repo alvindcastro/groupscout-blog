@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh repo:*)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(git clone:*)",
+      "Bash(cat /tmp/astro-blog-theme/src/pages/blog/[...slug].astro)",
+      "Bash(grep:*)",
+      "Bash(for f:*)",
+      "Bash(do)",
+      "Bash(sed -i '/^heroImage:/d' \"$f\")",
+      "Bash(done)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)"
+    ]
+  }
+}
