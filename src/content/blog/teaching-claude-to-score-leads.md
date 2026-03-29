@@ -23,7 +23,7 @@ A human who knows the construction industry can make reasonable inferences from 
 Each permit that passes the initial filter gets sent to the Claude Messages API with a system prompt that establishes the context:
 
 ```
-You are a lead analyst for the Sandman Hotel Vancouver Airport in Richmond, BC.
+You are a lead analyst for a hotel near Vancouver International Airport.
 Evaluate building permit records to identify projects that will generate
 demand for construction crew lodging.
 ```

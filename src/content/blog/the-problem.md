@@ -11,7 +11,7 @@ When a major construction project breaks ground near a hotel — a warehouse, a 
 
 That's extended-stay rates. Direct company billing. Weekly room blocks. Per-diem meal deals with the on-site restaurant. It is, without exaggeration, exactly the kind of business a hotel near an industrial area should be chasing.
 
-The Sandman Hotel Vancouver Airport sits minutes from YVR, has a large parking lot that fits work trucks, an on-site restaurant (Shark Club) for meal plans, and early breakfast service. For a rotating construction crew, it checks every box.
+The hotel sits minutes from YVR, has a large parking lot that fits work trucks, an on-site restaurant for meal plans, and early breakfast service. For a rotating construction crew, it checks every box.
 
 So why doesn't this business just... show up?
 

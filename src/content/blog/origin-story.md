@@ -7,7 +7,7 @@ heroImage: '../../assets/blog-placeholder-1.jpg'
 
 My wife is good at her job.
 
-She's a sales manager at Sandman Hotel Vancouver Airport in Richmond, BC — which means her job is to find businesses that need to book large numbers of rooms and convince them to book at her hotel before they book anywhere else. Construction companies. Sports teams. Film productions. Government contractors. That's her world.
+She's a sales manager at a hotel near YVR — which means her job is to find businesses that need to book large numbers of rooms and convince them to book at her hotel before they book anywhere else. Construction companies. Sports teams. Film productions. Government contractors. That's her world.
 
 I watched her work for a while before I started to see the problem. It's not that the leads don't exist — they absolutely do. A $50 million pipeline upgrade starts up three kilometres from the hotel, and suddenly you've got a rotating crew of 60 workers who need somewhere to sleep for eight months. That's a genuinely life-changing booking for a hotel sales team. The problem is *finding it* before it finds your competitors.
 
