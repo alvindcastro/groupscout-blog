@@ -1,7 +1,7 @@
 ---
 title: 'Building the foundation — store first, think later'
 description: 'Why I built the database layer before writing a single line of scraping code, and why the deduplication hash is the most important thing in the whole pipeline.'
-pubDate: '2026-03-30'
+pubDate: '2026-04-01'
 draft: true
 ---
 
