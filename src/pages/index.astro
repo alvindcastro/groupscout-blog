@@ -40,7 +40,7 @@ const allTags = [...new Set(allPosts.flatMap(post => post.data.tags || []))].sli
         </p>
         <div class="mt-6 sm:mt-8 md:mt-10 flex flex-wrap gap-3 sm:gap-4 md:gap-6 justify-center sm:justify-start">
           <a 
-            href="/about" 
+            href={`${import.meta.env.BASE_URL}about/`}
             class="group relative inline-flex items-center gap-2 text-sm font-medium text-zinc-900 dark:text-zinc-100 hover:text-zinc-700 dark:hover:text-zinc-300 transition-all duration-300 theme-transition-color min-h-[44px]"
           >
             <span>More about me</span>
@@ -179,7 +179,7 @@ const allTags = [...new Set(allPosts.flatMap(post => post.data.tags || []))].sli
         
         <div class="mt-6 sm:mt-8 text-center">
           <a 
-            href="/tags" 
+            href={`${import.meta.env.BASE_URL}tags/`}
             class="inline-flex items-center text-sm font-medium text-zinc-900 dark:text-zinc-100 hover:text-zinc-700 dark:hover:text-zinc-300 theme-transition-color min-h-[44px]"
           >
             <span>View all topics</span>
