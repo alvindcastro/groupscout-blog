@@ -74,7 +74,7 @@ const sortedTags = [...tagObjects].sort((a, b) => b.count - a.count);
           <div class="grid grid-cols-2 xxxs:grid-cols-2 xxs:grid-cols-2 xs:grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1.5 xxxs:gap-2 xxs:gap-2 xs:gap-2 sm:gap-3 md:gap-4 w-full">
             {sortedTags.map((tag) => (
               <a 
-                href={`/tags/${tag.name}`}
+                href={`${import.meta.env.BASE_URL}tags/${tag.name}`}
                 class="group relative overflow-hidden rounded-md sm:rounded-lg md:rounded-xl border border-zinc-200 dark:border-zinc-800 transition-all duration-300 hover:shadow-md sm:hover:shadow-lg hover:scale-[1.03] hover:border-zinc-300 dark:hover:border-zinc-700 active:scale-95 theme-transition-element theme-ripple flex-grow min-w-0"
                 style={`--tag-hue: ${tag.hue};`}
               >
