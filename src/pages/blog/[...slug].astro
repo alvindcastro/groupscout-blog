@@ -1,42 +1,47 @@
 ---
 import { getCollection } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
-import readingTime from 'reading-time'; // Thêm import này nếu chưa có
+import readingTime from 'reading-time';
+
 
 export async function getStaticPaths() {
-  const blogEntries = await getCollection('blog');
-  
-  // Sort entries by date for better next/prev navigation
-  const sortedEntries = [...blogEntries].sort(
-    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-  );
-  
-  return sortedEntries.map((entry, index) => {
-    // Tính toán readingTime từ nội dung markdown
-    const readingTimeResult = readingTime(entry.body);
-    
-    // Định dạng thời gian đọc thành chuỗi dễ đọc
-    let readingTimeStr;
-    if (readingTimeResult.minutes < 1) {
-      readingTimeStr = 'Dưới 1 phút đọc';
-    } else {
-      // Làm tròn lên và định dạng thành "X phút đọc"
-      const minutes = Math.ceil(readingTimeResult.minutes);
-      readingTimeStr = `${minutes} phút đọc`;
-    }
-    
-    return {
-      params: { slug: entry.slug },
-      props: { 
-        entry,
-        readingTimeValue: readingTimeStr, // Truyền chuỗi đã định dạng
-        readingTimeStats: readingTimeResult, // Truyền toàn bộ thông tin thống kê
-        nextPost: index > 0 ? sortedEntries[index - 1] : null,
-        prevPost: index < sortedEntries.length - 1 ? sortedEntries[index + 1] : null
-      },
-    };
-  });
+    const blogEntries = await getCollection('blog');
+
+    // Sort entries by date for better next/prev navigation
+    const sortedEntries = [...blogEntries].sort(
+        (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+    );
+
+    return sortedEntries.map((entry, index) => {
+        // Calculate reading time from markdown content
+        const readingTimeResult = readingTime(entry.body);
+
+        // Format reading time as a human-readable English string
+        let readingTimeStr: string;
+        if (readingTimeResult.minutes < 1) {
+            readingTimeStr = 'Less than 1 min read';
+        } else {
+            // Round up and format as "X min read"
+            const minutes = Math.ceil(readingTimeResult.minutes);
+            readingTimeStr = `${minutes} min read`;
+        }
+
+        return {
+            params: { slug: entry.slug },
+            props: {
+                entry,
+                readingTimeValue: readingTimeStr,   // formatted English string
+                readingTimeStats: readingTimeResult, // full reading-time stats
+                nextPost: index > 0 ? sortedEntries[index - 1] : null,
+                prevPost:
+                    index < sortedEntries.length - 1
+                        ? sortedEntries[index + 1]
+                        : null,
+            },
+        };
+    });
 }
+
 
 const { entry, nextPost, prevPost, readingTimeValue, readingTimeStats } = Astro.props;
 const { Content } = await entry.render();
