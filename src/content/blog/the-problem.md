@@ -28,17 +28,17 @@ The problem is finding the signal early enough.
 
 ---
 
-## The data exists — nobody's reading it
+## The data is public — but not especially accessible
 
-Here's what surprised me when I started digging into this: the information is public.
+Here’s what surprised me when I started digging into this: the information is public.
 
-The City of Richmond publishes weekly building permit reports. Every commercial permit — warehouse, office, restaurant, hotel, industrial — is in there. Permit number, address, applicant, contractor, construction value, work type, issue date. Posted as a PDF every week.
+The City of Richmond publishes weekly building permit reports. Every commercial permit — warehouse, office, restaurant, hotel, industrial — shows up there. Permit number, address, applicant, contractor, construction value, work type, issue date. All of it posted as a PDF every week.
 
-There's no API. It's just a PDF on a city website. But the data is there.
+I spent some time looking for an API or structured feed and didn’t find anything obvious. As far as I can tell, the primary way this information is published is still a weekly PDF on a city website. But regardless of the delivery mechanism, the data itself is there.
 
-And nobody at any hotel I know of is reading it systematically. Google Alerts catch news articles days after the fact. Trade publications cover the big stuff but miss the mid-sized projects that are actually the best leads. Word of mouth is hit-or-miss.
+Some people may skim these reports, and some teams may catch pieces of them informally. But in practice, this isn’t something most hotel sales teams are tracking consistently or turning into a repeatable workflow. Google Alerts surface news articles days after the fact. Trade publications focus on the biggest projects and miss the mid‑sized ones that often make the best leads. Word of mouth helps, but it’s hit‑or‑miss.
 
-So the situation is: the signal exists, it's public, it's updated weekly, and the gap between "permit issued" and "crews mobilizing" is typically 8–12 weeks. Plenty of time to get a call in.
+So the situation is this: the signal exists, it’s public, it’s updated weekly — and the gap between “permit issued” and “crews mobilizing” is typically 8–12 weeks. Plenty of time to get a call in, if you know where to look.
 
 ---
 
