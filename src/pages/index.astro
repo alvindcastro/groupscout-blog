@@ -3,17 +3,25 @@ import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 
-// Get all blog posts
-const allPosts = await getCollection('blog');
+const now = new Date();
 
-// Get the 3 most recent posts
-const recentPosts = allPosts
-  .filter(post => !post.data.draft)
-  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
-  .slice(0, 3);
+// ✅ Only published posts
+const allPosts = (await getCollection('blog')).filter(
+    (post) =>
+        post.data.pubDate <= now &&
+        post.data.draft !== true
+);
 
-// Get all unique tags from posts
-const allTags = [...new Set(allPosts.flatMap(post => post.data.tags || []))].slice(0, 5);
+// ✅ Get the 3 most recent published posts
+const recentPosts = [...allPosts]
+    .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+    .slice(0, 3);
+
+// ✅ Tags from published posts only
+const allTags = [
+  ...new Set(allPosts.flatMap(post => post.data.tags || []))
+].slice(0, 5);
+
 ---
 
 <Layout title="Home | Group Scout">
