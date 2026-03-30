@@ -35,7 +35,7 @@ The concept is simple: monitor public data sources for signals, run them through
 3. **Stores** the leads in a database
 4. **Notifies** the sales team via Slack — a weekly digest on Monday mornings, and an immediate alert for anything that scores really high
 
-No dashboard. No login. Just a Slack message that says: "here are the projects you should be calling about this week, and here's why."
+Just a message that says: "here are the projects you should be calling about this week, and here's why."
 
 ---
 

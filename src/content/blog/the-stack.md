@@ -63,9 +63,13 @@ A building permit tells you: there's a $1.2M warehouse being built at this addre
 
 A human reading the permit can make reasonable inferences based on project type, value, location, and the contractor's name. That's exactly what language models are good at.
 
+The interesting part here isn’t learning how to use an LLM — it’s deciding where it earns its keep, and where the system should stay deterministic.
+
 I'm using Claude Haiku (Anthropic's fastest, cheapest model) for this. The cost per permit is approximately $0.001 — less than a tenth of a cent. The pipeline runs weekly on maybe 5–10 filtered permits. The entire enrichment step costs pennies per month.
 
 Haiku is also fast. The enrichment call takes about a second per permit. Sonnet would be more capable but slower and 5x the cost for a use case where Haiku is already doing the job well.
+
+Choosing the smaller model is deliberate — not because capability doesn’t matter, but because most of the system shouldn’t depend on a model at all.
 
 The model returns structured JSON: priority score, project type, estimated crew size, duration, out-of-town likelihood, outreach timing suggestion, notes. Predictable, parseable, actionable.
 
@@ -75,7 +79,7 @@ The model returns structured JSON: priority score, project type, estimated crew 
 
 The simplest possible answer: my wife already has Slack on her phone.
 
-No app to build. No login to manage. No dashboard that'll be ignored after the first week. Just a message that shows up Monday morning with this week's leads.
+Just a message that shows up Monday morning with this week's leads.
 
 Slack's Block Kit format is also genuinely good for rich card layouts. Score badges, priority indicators, direct links to the source PDF — all of it is possible without writing any frontend code. The "UI" is just a webhook POST with some structured JSON.
 

@@ -17,6 +17,8 @@ A human who knows the construction industry can make reasonable inferences from 
 
 Claude isn’t making decisions here — it’s adding context so a human can make a better call.
 
+This isn’t about learning how to use an LLM — it’s about getting better at where it helps, where it doesn’t, and how much structure it actually needs to be useful.
+
 ---
 
 ## The enrichment call
