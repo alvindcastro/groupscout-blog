@@ -1,6 +1,6 @@
 # groupscout-blog
 
-A blog documenting the building of [groupscout](https://github.com/alvindcastro/groupscout) — a group lodging demand intelligence tool for hotel sales teams.
+A blog documenting the building of [Group Scout](https://github.com/alvindcastro/groupscout) — a group lodging demand intelligence tool for hotel sales teams.
 
 My wife is a sales manager at a hotel. I'm a software developer. This is what happens when those two worlds collide.
 

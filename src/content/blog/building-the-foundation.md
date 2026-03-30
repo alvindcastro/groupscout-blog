@@ -5,7 +5,7 @@ pubDate: '2026-03-30'
 draft: true
 ---
 
-When I started building groupscout, I did something that felt a little backwards at first: I built the storage layer before I built the scraper.
+When I started building Group Scout, I did something that felt a little backwards at first: I built the storage layer before I built the scraper.
 
 No data to store yet. No enrichment to persist. Just tables, schemas, and a dedup hash function — sitting there waiting.
 

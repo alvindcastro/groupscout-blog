@@ -1,6 +1,6 @@
 ---
 title: 'The Slack digest — no dashboard, no problem'
-description: 'The entire "UI" of groupscout is a Slack message. Here is why that was the right call, and what it actually looks like.'
+description: 'The entire "UI" of Group Scout is a Slack message. Here is why that was the right call, and what it actually looks like.'
 pubDate: '2026-04-02'
 draft: true
 ---

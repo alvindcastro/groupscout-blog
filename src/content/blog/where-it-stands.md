@@ -1,6 +1,6 @@
 ---
 title: "Where it stands — and what's next"
-description: 'The pipeline runs. Real permits are flowing. Here is the current state of groupscout and what comes next.'
+description: 'The pipeline runs. Real permits are flowing. Here is the current state of Group Scout and what comes next.'
 pubDate: '2026-04-03'
 draft: true
 ---

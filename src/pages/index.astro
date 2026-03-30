@@ -16,7 +16,7 @@ const recentPosts = allPosts
 const allTags = [...new Set(allPosts.flatMap(post => post.data.tags || []))].slice(0, 5);
 ---
 
-<Layout title="Home | groupscout">
+<Layout title="Home | Group Scout">
   <!-- Hero Section with improved mobile responsiveness -->
   <section class="py-10 sm:py-16 md:py-20 px-4 sm:px-6 theme-transition-all">
     <div class="max-w-2xl mx-auto relative">
@@ -36,7 +36,7 @@ const allTags = [...new Set(allPosts.flatMap(post => post.data.tags || []))].sli
           </span>
         </h1>
         <p class="mt-4 sm:mt-6 md:mt-8 text-base sm:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed theme-transition-color max-w-lg mx-auto sm:mx-0">
-          The build log for groupscout — a Go tool that finds hotel group sales leads from public permit data, enriched by AI, delivered to Slack.
+          The build log for Group Scout — a Go tool that finds hotel group sales leads from public permit data, enriched by AI, delivered to Slack.
         </p>
         <div class="mt-6 sm:mt-8 md:mt-10 flex flex-wrap gap-3 sm:gap-4 md:gap-6 justify-center sm:justify-start">
           <a 

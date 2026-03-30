@@ -20,7 +20,7 @@ What if you could get there first?
 
 If a building permit for a $40M commercial project just got issued in Richmond, that project is probably starting in 8–12 weeks. The GC is about to hire crews. Those crews are going to need somewhere to stay. And right now, nobody from any hotel has called the GC yet — because nobody knows yet.
 
-That's the window. That's where groupscout is supposed to live.
+That's the window. That's where Group Scout is supposed to live.
 
 The concept is simple: monitor public data sources for signals, run them through AI to figure out which ones actually matter, and surface the best ones to the sales team before the window closes.
 
