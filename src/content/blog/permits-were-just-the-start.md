@@ -30,7 +30,7 @@ Permits check most of these boxes — but not all demand shows up there first.
 
 ## Why expand beyond permits
 
-This became obvious the first time my “client” — my wife — asked a simple question:
+This became obvious after a few conversations at home, when my “client” — my wife — asked a simple question:
 
 > “Can this pick up film productions too?”
 

@@ -10,6 +10,8 @@ They’re not the only group that behaves that way.
 
 It didn’t take long for my “client” — my wife — to point out another category hotel sales teams care about just as much: film and TV productions.
 
+She kept coming back to the same theme: timing matters, and the best leads are the ones you see before everyone else does.
+
 Large crews. Fixed schedules. Out‑of‑town specialists. And a real need for nearby accommodation for weeks or months at a time.
 
 ---
