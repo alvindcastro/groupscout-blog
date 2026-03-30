@@ -6,22 +6,29 @@ import readingTime from 'reading-time';
 
 export async function getStaticPaths() {
     const blogEntries = await getCollection('blog');
+    const now = new Date();
 
-    // Sort entries by date for better next/prev navigation
-    const sortedEntries = [...blogEntries].sort(
+    // ✅ Filter out future-dated (and draft) posts FIRST
+    const publishedEntries = blogEntries.filter(
+        (entry) =>
+            entry.data.pubDate <= now &&
+            entry.data.draft !== true
+    );
+
+    // ✅ Then sort for next/prev navigation
+    const sortedEntries = [...publishedEntries].sort(
         (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
     );
 
+
+
     return sortedEntries.map((entry, index) => {
-        // Calculate reading time from markdown content
         const readingTimeResult = readingTime(entry.body);
 
-        // Format reading time as a human-readable English string
         let readingTimeStr: string;
         if (readingTimeResult.minutes < 1) {
             readingTimeStr = 'Less than 1 min read';
         } else {
-            // Round up and format as "X min read"
             const minutes = Math.ceil(readingTimeResult.minutes);
             readingTimeStr = `${minutes} min read`;
         }
@@ -30,8 +37,8 @@ export async function getStaticPaths() {
             params: { slug: entry.slug },
             props: {
                 entry,
-                readingTimeValue: readingTimeStr,   // formatted English string
-                readingTimeStats: readingTimeResult, // full reading-time stats
+                readingTimeValue: readingTimeStr,
+                readingTimeStats: readingTimeResult,
                 nextPost: index > 0 ? sortedEntries[index - 1] : null,
                 prevPost:
                     index < sortedEntries.length - 1

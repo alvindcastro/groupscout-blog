@@ -1,27 +1,43 @@
 ---
+
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const allPosts = await getCollection('blog') || [];
-const sortedPosts = allPosts.sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+const now = new Date();
+
+// ✅ Filter first
+const allPosts = (await getCollection('blog')).filter(
+    (post) =>
+        post.data.pubDate <= now &&
+        post.data.draft !== true
 );
 
-// Group posts by year for timeline effect
+// ✅ Then sort
+const sortedPosts = [...allPosts].sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+// ✅ Group posts by year for timeline effect
 const postsByYear = sortedPosts.reduce((acc, post) => {
-  const year = new Date(post.data.pubDate).getFullYear();
+  const year = post.data.pubDate.getFullYear();
   if (!acc[year]) acc[year] = [];
   acc[year].push(post);
   return acc;
 }, {});
 
-const years = Object.keys(postsByYear).sort((a, b) => b - a);
+// ✅ Sorted years (newest first)
+const years = Object.keys(postsByYear)
+    .map(Number)
+    .sort((a, b) => b - a);
 
-// Get total post count
+// ✅ Accurate post count
 const totalPosts = sortedPosts.length;
 
-// Get unique tags for search suggestions
-const allTags = [...new Set(sortedPosts.flatMap(post => post.data.tags || []))];
+// ✅ Unique tags from *published* posts only
+const allTags = [
+  ...new Set(sortedPosts.flatMap(post => post.data.tags || []))
+];
+
 ---
 
 <BaseLayout title="Blog">
