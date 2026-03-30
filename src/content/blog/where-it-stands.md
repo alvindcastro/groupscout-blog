@@ -5,6 +5,8 @@ pubDate: '2026-04-03'
 draft: true
 ---
 
+> This is a snapshot of the system as it stands in late March 2026.
+
 The pipeline runs.
 
 One command:

@@ -15,6 +15,8 @@ The actual requirement was simple: my wife needs to see this week's leads, on he
 
 So the entire "UI" is a Slack webhook.
 
+Slack happens to be the delivery mechanism here, but the real design goal is minimizing friction by meeting the sales team where they already work.
+
 ---
 
 ## How Slack incoming webhooks work

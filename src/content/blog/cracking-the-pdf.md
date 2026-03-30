@@ -5,6 +5,8 @@ pubDate: '2026-03-31'
 draft: true
 ---
 
+> This post focuses on one city’s permit PDFs, but the parsing problems here are common to a lot of “PDF‑as‑data” systems.
+
 The City of Richmond does not have a building permits API.
 
 I knew this going in. I checked. There's a data portal, there are some datasets, but weekly building permit reports are published as PDFs at a known URL. That's it. If you want the data, you scrape the page, download the PDF, and parse the text.

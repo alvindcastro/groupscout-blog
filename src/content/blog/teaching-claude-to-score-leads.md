@@ -15,6 +15,8 @@ What it doesn't tell you:
 
 A human who knows the construction industry can make reasonable inferences from project type, value, and location. That's exactly what Claude is for.
 
+Claude isn’t making decisions here — it’s adding context so a human can make a better call.
+
 ---
 
 ## The enrichment call
