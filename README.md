@@ -2,11 +2,11 @@
 
 A blog documenting the building of [Group Scout](https://github.com/alvindcastro/groupscout) — a group lodging demand intelligence tool for hotel sales teams.
 
-My wife is a sales manager at a hotel. I'm a software developer. This is what happens when those two worlds collide.
+My wife works as a sales manager at a hotel. I’m a software developer. Combine those two perspectives with my habit of starting side projects, and Group Scout was probably inevitable.
 
-The project monitors public data sources for signals that indicate incoming groups needing room blocks — construction crews, sports teams, film productions, government contractors — and surfaces prioritized leads to the sales team via Slack.
+The project analyzes public data to identify and prioritize potential group lodging opportunities.
 
-This blog follows the journey: the ideas, the missteps, the "wait, how does hotel sales even work?" moments, and (hopefully) the wins.
+This blog follows the journey: the ideas, the missteps, the “wait, how does hotel sales even work?” moments, and (hopefully) the wins.
 
 ---
 
