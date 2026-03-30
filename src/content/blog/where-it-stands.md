@@ -14,7 +14,7 @@ go run ./cmd/server/ --run-once
 ```
 
 What happens:
-1. Scrapes the Richmond weekly reports page for the latest PDF URL
+1. Scrapes the weekly reports page for the latest PDF URL
 2. Downloads the PDF, extracts text with `pdftotext`, parses 20 permit records
 3. Filters: commercial sub-types with value above threshold
 4. Checks each permit against the DB — skips anything already seen

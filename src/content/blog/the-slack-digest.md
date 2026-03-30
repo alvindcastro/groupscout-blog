@@ -38,7 +38,7 @@ Each lead in the digest gets its own Block Kit card:
 📄 View source document
 ```
 
-The "View source document" link goes directly to the Richmond PDF the permit came from. If you want to verify the details or pull more context, one click gets you there.
+The "View source document" link goes directly to the PDF the permit came from. If you want to verify the details or pull more context, one click gets you there.
 
 ---
 

@@ -18,7 +18,7 @@ The current workflow is a lot of manual digging. Google Alerts that surface news
 
 What if you could get there first?
 
-If a building permit for a $40M commercial project just got issued in Richmond, that project is probably starting in 8–12 weeks. The GC is about to hire crews. Those crews are going to need somewhere to stay. And right now, nobody from any hotel has called the GC yet — because nobody knows yet.
+If a building permit for a $40M commercial project just got issued, that project is probably starting in 8–12 weeks. The GC is about to hire crews. Those crews are going to need somewhere to stay. And right now, nobody from any hotel has called the GC yet — because nobody knows yet.
 
 That's the window. That's where Group Scout is supposed to live.
 
@@ -49,7 +49,7 @@ Second, this is genuinely a learning exercise for me. I'm getting more comfortab
 
 Third — if this works, maybe it helps someone else in a similar situation. There are a lot of people in specialized industries where the right data exists but nobody's connected it up yet.
 
-We're about two phases in. The pipeline runs. Real Richmond building permits are being collected and parsed. The Claude enrichment is wired up (though currently blocked on API credits — a very relatable problem). Slack notifications are formatted and ready.
+We're about two phases in. The pipeline runs. Real building permits are being collected and parsed. The Claude enrichment is wired up (though currently blocked on API credits — a very relatable problem). Slack notifications are formatted and ready.
 
 The next post will be about Phase 1: how we validated the whole idea manually before writing a single line of code. Because the first thing my wife taught me about hotel sales is that you don't build the tool before you understand the job.
 
