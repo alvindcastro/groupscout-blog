@@ -88,6 +88,19 @@ A single backend-doc may produce one post or several — the user decides after 
 
 ---
 
+## Build-Log Blog Assistance
+
+Claude can also assist with drafting posts for the existing build-log blog at `/blog/`. The workflow mirrors the engineering blog:
+
+1. User shares context about an experience — a decision made, a problem solved, something learned
+2. Claude drafts a post matching the existing narrative tone (personal, first-person, grounded in the hotel sales domain)
+3. User reviews and directs: approve, revise, or discard
+4. Approved posts go into `src/content/blog/` following the existing frontmatter schema
+
+The EOS guidelines apply here too — clear sentences, active voice, no needless words — but the register stays conversational rather than technical.
+
+---
+
 ## Out of Scope
 
 - A separate Astro project or deploy target
