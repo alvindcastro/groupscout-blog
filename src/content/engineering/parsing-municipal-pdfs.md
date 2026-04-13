@@ -1,7 +1,7 @@
 ---
 title: "Parsing Municipal PDFs — Content-Aware Data Extraction in Go"
 description: "Why pure Go PDF libraries fail on municipal encoding and how to build a robust, content-aware parser for inconsistent data."
-pubDate: "2026-04-14"
+pubDate: "2026-04-11"
 tags: ["go", "pdf", "parsing", "automation"]
 draft: true
 ---

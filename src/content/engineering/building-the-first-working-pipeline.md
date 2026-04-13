@@ -1,7 +1,7 @@
 ---
 title: "Building the First Working Pipeline"
 description: "How the collector interface, deduplication, Claude enrichment, and Slack notification came together into a pipeline that could actually find a lead."
-pubDate: "2026-04-12"
+pubDate: "2026-04-04"
 tags: ["go", "architecture", "claude", "slack", "sqlite"]
 draft: false
 ---

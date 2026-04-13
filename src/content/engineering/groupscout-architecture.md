@@ -1,7 +1,7 @@
 ---
 title: "System Architecture Overview"
 description: "How Group Scout is structured: collector, enrichment, storage, and notification layers."
-pubDate: "2026-04-05"
+pubDate: "2026-03-29"
 tags: ["architecture", "go", "system-design"]
 draft: false
 ---
