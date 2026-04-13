@@ -1,9 +1,8 @@
 ---
 title: 'System Architecture Overview'
 description: 'How Group Scout is structured: collector, enrichment, storage, and notification layers.'
-pubDate: '2026-04-12'
+pubDate: '2026-04-05'
 tags: ['architecture', 'go', 'system-design']
-source: 'ARCHITECTURE.md'
 ---
 
 Group Scout is a Go backend structured in four layers. Each layer has one job.
