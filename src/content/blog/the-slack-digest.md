@@ -1,8 +1,8 @@
 ---
 title: 'The Slack digest — no dashboard, no problem'
 description: 'The Group Scout "UI" is a Slack message. meeting the sales team where they work minimizes friction.'
-pubDate: '2026-04-07'
-draft: true
+pubDate: '2026-04-12'
+draft: false
 ---
 
 Side projects eventually need an output. A web dashboard with filtering and CRM features would look impressive. But it would take weeks to build and might be ignored.

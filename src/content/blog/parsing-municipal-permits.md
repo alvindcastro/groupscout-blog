@@ -1,8 +1,8 @@
 ---
 title: 'Parsing municipal permits — the first signal'
 description: "How I turned messy city PDF reports into structured leads and why a modular approach scales."
-pubDate: '2026-04-07'
-draft: true
+pubDate: '2026-04-11'
+draft: false
 ---
 
 To know what a city builds, visit the municipal website. Many cities publish weekly lists of recently issued building permits.

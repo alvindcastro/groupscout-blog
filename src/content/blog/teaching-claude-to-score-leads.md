@@ -2,7 +2,7 @@
 title: 'Claude scores hotel leads'
 description: "A building permit identifies what was built, but Claude decides whether to call."
 pubDate: '2026-04-05'
-draft: true
+draft: false
 ---
 
 A building permit lists a $1.2M warehouse build at 12500 Vulcan Way by Safara Cladding Inc for ABC Developments Ltd.
