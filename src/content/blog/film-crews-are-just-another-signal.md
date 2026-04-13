@@ -1,16 +1,16 @@
 ---
-title: "Film crews are just another signal"
-description: "Construction crews were the starting point. Film and TV productions turned out to be an even stronger signal."
+title: "Film crews as a signal"
+description: "Construction crews started it. Film and TV productions are an even stronger signal."
 pubDate: '2026-04-11'
 ---
 
-Construction crews were the first signal Group Scout was built around. They’re predictable, long‑running, and easy to reason about once you can see them early enough.
+Group Scout first used construction crews as a signal. They are predictable and easy to reason about if you see them early.
 
-They’re not the only group that behaves that way.
+They are not the only such group.
 
-It didn’t take long for my “client” — my wife — to point out another category hotel sales teams care about just as much: film and TV productions.
+My wife pointed out another category: film and TV productions.
 
-She kept coming back to the same theme: timing matters, and the best leads are the ones you see before everyone else does.
+She emphasized that timing matters and the best leads are the ones seen first.
 
 Large crews. Fixed schedules. Out‑of‑town specialists. And a real need for nearby accommodation for weeks or months at a time.
 
@@ -18,44 +18,40 @@ Large crews. Fixed schedules. Out‑of‑town specialists. And a real need for n
 
 ## Why film and TV matter
 
-A feature film or TV series block can bring **80 to 300+ crew**, often flying in department heads and specialty roles who need to stay close to set.
+A feature film or TV series can bring **80 to 300+ crew**. Department heads and specialists often fly in and need to stay near the set.
 
-From a hotel sales perspective, that looks a lot like construction:
+To a hotel sales manager, this resembles construction:
 - large groups
 - defined timelines
 - limited flexibility on location
 
-In some cases, it’s an even better signal than permits. Productions mobilize quickly, and the booking window can be tight.
+Sometimes it is a better signal than permits. Productions mobilize quickly, and the booking window is tight.
 
 ---
 
 ## Finding the data
 
-Creative BC publishes an “In Production” list that solves that problem.
+A public "In Production" list solves the data problem. It is public, updated regularly, and not obvious.
 
-It’s public and regularly updated. It’s also not especially obvious.
-
-Digging a little deeper turned up a Salesforce Visualforce endpoint that returns fully rendered HTML to a plain HTTP request.
-
-Sometimes the best API is the one hiding in plain sight.
+A Salesforce Visualforce endpoint returns fully rendered HTML to a plain HTTP request. Sometimes the best API hides in plain sight.
 
 ---
 
 ## Fitting into the pipeline
 
-Each production maps cleanly into a `RawProject` and flows through the same steps as every other source:
+Each production maps to a `RawProject` and flows through the same steps:
 - dedup
 - LLM enrichment
 - scoring
 - Slack delivery
 
-The only thing that changes is the enrichment prompt. Everything else stays the same.
+Only the enrichment prompt changes.
 
 That’s the point.
 
 ---
 
 Permits tell you *what might get built*.  
-Film and TV tell you *who is already mobilizing*.
+Film and TV tell you *who is mobilizing*.
 
-Different signals. Same system.
+Different signals, same system.

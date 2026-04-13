@@ -1,16 +1,16 @@
 ---
 title: "The problem — why you can't just wait for the phone to ring"
-description: "Construction crew lodging is one of the most valuable segments in hotel sales. It's also one of the hardest to find. Here's why."
+description: "Construction crew lodging is valuable but hard to find. Here's why."
 pubDate: '2026-03-28'
 ---
 
-Let me explain the business case before I explain the code.
+Explain the business case before the code.
 
-When a major construction project breaks ground near a hotel — a warehouse, a commercial development, a pipeline upgrade — the general contractor needs to house their crew. Not one or two people. We're talking 20 to 100+ workers, rotating in and out, for anywhere from three months to over a year.
+When a major construction project breaks ground near a hotel — a warehouse, commercial development, or pipeline upgrade — the general contractor (GC) houses the crew. I mean 20 to 100+ workers rotating for three months to a year.
 
-That's extended-stay rates. Direct company billing. Weekly room blocks. Per-diem meal deals with the on-site restaurant. It is, without exaggeration, exactly the kind of business a hotel near an industrial area should be chasing.
+That means extended-stay rates, direct company billing, weekly room blocks, and per-diem meal deals. A hotel near an industrial area should chase this business.
 
-A hotel close to transportation hubs, with ample parking for work trucks, an on-site restaurant for meal plans, and early breakfast service, checks every box for rotating construction crews.
+A hotel near transportation hubs with ample truck parking, an on-site restaurant, and early breakfast service suits rotating crews.
 
 So why doesn't this business just... show up?
 
@@ -18,12 +18,12 @@ So why doesn't this business just... show up?
 
 ## The timing problem
 
-Here's the thing about construction crews: by the time they're actively looking for hotels, it's too late. They've already started calling around. The GC's travel coordinator has a shortlist. Someone already got there first.
+Construction crews book hotels before you know they're looking. By the time they search, you're late. The GC's travel coordinator already has a shortlist.
 
-The window to win this business isn't when they're booking. It's weeks or months earlier — when the project is being permitted, when the contract is being awarded, when the announcement hits the news. That's when you can call and say:  
-"I saw your project just got permitted. We're nearby. Let me tell you about our extended-stay rates."
+Win this business weeks or months earlier — when the project is permitted, the contract awarded, or the news breaks. Call and say:
+"I saw your project just got permitted. I'm nearby. Let me tell you about our extended-stay rates."
 
-That call, made early, is almost always welcome. It solves a problem the GC was about to have. It positions the hotel as proactive rather than reactive. And it usually wins the business.
+An early call solves the GC's upcoming problem. It positions the hotel as proactive. It wins the business.
 
 The problem is finding the signal early enough.
 
@@ -31,30 +31,29 @@ The problem is finding the signal early enough.
 
 ## The data is public — but not especially accessible
 
-Here’s what surprised me when I started digging into this: the information is public.
+Information is public.
 
-Many cities publish weekly building permit reports. Every commercial permit — warehouse, office, restaurant, hotel, industrial — shows up there. Permit number, address, applicant, contractor, construction value, work type, issue date. All of it posted as a PDF on a regular cadence.
+Many cities publish weekly building permit reports. Commercial permits — warehouse, office, restaurant, hotel, industrial — appear there. They list the permit number, address, applicant, contractor, construction value, work type, and issue date. Cities post these as PDFs.
 
-I spent some time looking for APIs or structured feeds and didn’t find anything obvious. In many cases, the primary way this information is published is still a downloadable PDF. But regardless of the delivery mechanism, the data itself is there.
+I found no obvious APIs or structured feeds. Many cities still only publish PDFs. Regardless of the delivery, the data exists.
 
-Some people may skim these reports, and some teams may catch pieces of them informally. But in practice, this isn’t something most hotel sales teams are tracking consistently or turning into a repeatable workflow. Google Alerts surface news articles days after the fact. Trade publications focus on the biggest projects and miss the mid‑sized ones that often make the best leads. Word of mouth helps, but it’s hit‑or‑miss.
+Most hotel sales teams don't track these reports consistently. Google Alerts surface news days late. Trade publications focus on the largest projects and miss mid‑sized leads. Word of mouth is hit‑or‑miss.
 
-So the situation is this: the signal exists, it’s public, it’s updated regularly — and the gap between “permit issued” and “crews mobilizing” is typically 8–12 weeks. Plenty of time to get a call in, if you know where to look.
+The signal is public and updated regularly. The gap between “permit issued” and “crews mobilizing” is typically 8–12 weeks — plenty of time to call if you know where to look.
 
 ---
 
 ## What Group Scout does with that
 
-The idea behind Group Scout is simple: read the permits, filter for the ones that matter, figure out which ones are worth a phone call, and surface them for the sales team.
+Group Scout reads permits, filters for relevance, identifies targets, and alerts the sales team.
 
-In practice, that currently looks like this:
-- Pulling weekly building permit PDFs published by a city
-- Filtering for commercial projects above a dollar threshold (no residential, no interior renovations)
-- Sending each relevant permit to an LLM to estimate factors like crew size, project duration, likelihood of out‑of‑town workers, and an overall priority score
-- Producing a short, prioritized list on a regular schedule
+- Pulling weekly building permit PDFs
+- Filtering for commercial projects above a dollar threshold
+- Using an LLM to estimate crew size, project duration, and priority
+- Producing a prioritized list
 
-The LLM part is genuinely useful here. A permit tells you there’s a $1.2M warehouse being built at a specific address. It doesn’t tell you whether that’s a local job with a five‑person crew or a fly‑in crew of sixty. From the project type, value, and description, an LLM can make a reasonable inference — and, more importantly, help flag which permits are worth calling about first.
+The LLM is useful. A permit shows a $1.2M warehouse build at an address. It doesn't specify if the crew is local or a sixty-person fly-in team. An LLM infers these details from the project type, value, and description to help flag the best leads.
 
-Permits are just the starting point. Other public data sources could eventually feed into the same pipeline — contract awards, planning applications, infrastructure projects, or anything else that reliably signals incoming group demand. The goal isn’t to chase every possible input, but to add sources cautiously when they improve signal quality.
+Permits are the start. Other public sources like contract awards, planning applications, and infrastructure projects signal group demand. I add sources cautiously to improve signal quality.
 
-The next few posts dig into how this actually gets built, starting with the tech stack — including a few choices that are worth explaining in more detail.
+The next posts cover the tech stack.

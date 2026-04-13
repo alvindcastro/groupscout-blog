@@ -12,7 +12,12 @@
       "Bash(sed -i '/^heroImage:/d' \"$f\")",
       "Bash(done)",
       "Bash(npm install:*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "mcp__plugin_claude-mem_mcp-search__get_observations",
+      "mcp__plugin_claude-mem_mcp-search__smart_outline",
+      "Bash(npx astro:*)",
+      "Bash(npm i:*)",
+      "Bash(echo \"Exit code: $?\")"
     ]
   }
 }

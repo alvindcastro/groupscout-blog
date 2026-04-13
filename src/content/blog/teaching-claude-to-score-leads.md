@@ -1,21 +1,19 @@
 ---
-title: 'Teaching Claude to score hotel leads'
-description: "A building permit tells you what got built. It does not tell you whether to call someone about it. That is Claude's job."
+title: 'Claude scores hotel leads'
+description: "A building permit identifies what was built, but Claude decides whether to call."
 pubDate: '2026-04-05'
 draft: true
 ---
 
-A building permit tells you: a $1.2M warehouse is being built at 12500 Vulcan Way, issued to Safara Cladding Inc, filed by ABC Developments Ltd.
+A building permit lists a $1.2M warehouse build at 12500 Vulcan Way by Safara Cladding Inc for ABC Developments Ltd.
 
-What it doesn't tell you:
-- Whether "Safara Cladding" is the GC or a sub
-- How many workers the project will require
-- Whether those workers are local or flying in from out of province
-- Whether it's worth calling about at all
+It omits:
+- If "Safara Cladding" is the GC or a sub.
+- The required crew size.
+- If the crew is local or from out of province.
+- If the lead warrants a call.
 
-A human who knows the construction industry can make reasonable inferences from project type, value, and location. That's exactly what Claude is for.
-
-Claude isn’t making decisions here — it’s adding context so a human can make a better call.
+An industry expert infers these from project type, value, and location. Claude does the same. It adds context so a human can make a better call.
 
 This isn’t about learning how to use an LLM — it’s about getting better at where it helps, where it doesn’t, and how much structure it actually needs to be useful.
 
@@ -23,10 +21,10 @@ This isn’t about learning how to use an LLM — it’s about getting better at
 
 ## The enrichment call
 
-Each permit that passes the initial filter gets sent to the Claude Messages API with a system prompt that establishes the context:
+Each permit passing the filter goes to the Claude Messages API with this system prompt:
 
 ```
-You are a lead analyst for a hotel near Vancouver International Airport.
+You are a lead analyst for a hotel near a major airport.
 Evaluate building permit records to identify projects that will generate
 demand for construction crew lodging.
 ```
@@ -47,23 +45,21 @@ The permit data — folder number, address, work type, construction value, appli
 }
 ```
 
-That's the lead. Priority score, estimated crew, outreach timing, GC name, and a plain-English reason. Everything a sales manager needs to decide whether to pick up the phone.
+Priority score, estimated crew, outreach timing, GC name, and a plain-English reason — everything a sales manager needs to decide on a call.
 
 ---
 
 ## Why Haiku and not Sonnet
 
-Claude has a family of models. Sonnet is more capable. Haiku is faster and about 5x cheaper.
+Claude Haiku is faster and 5x cheaper than Sonnet. For structured extraction from short text, Haiku is the right choice. It reads a permit and fills the fields.
 
-For this use case, Haiku is the right choice. The task is structured extraction from short text — not nuanced writing, not complex reasoning, just: read a permit, fill in these fields. Haiku handles it well.
-
-The cost per permit is roughly $0.001 — one-tenth of a cent. The pipeline processes maybe 5–10 filtered permits per week. Total enrichment cost: a few cents per month. You could run this for years before the API cost becomes a rounding error worth caring about.
+Permit enrichment costs roughly $0.001 per permit. The pipeline processes 5–10 permits weekly, totaling a few cents monthly.
 
 ---
 
 ## An important design choice: preserve the raw data
 
-One thing I was careful about: Claude's `general_contractor` field is its *best guess* at who the GC is. The raw permit has separate `applicant` and `contractor` fields — and those are preserved in the lead record alongside Claude's inference.
+Claude *guesses* the GC. I preserve the raw permit's `applicant` and `contractor` fields alongside Claude's inference.
 
 Why does this matter? Take this example:
 
@@ -79,12 +75,10 @@ The raw data never gets thrown away. Claude adds context on top of it — it doe
 
 ## Dedup before enrichment
 
-One more thing about where the enrichment fits in the pipeline: it happens *after* the dedup check, not before.
+Enrichment follows the dedup check. The pipeline checks if a permit's hash exists before calling Claude.
 
-Before calling Claude, the pipeline checks whether this permit's hash already exists in the database. If it does, skip — regardless of whether enrichment previously succeeded or failed. (Failed enrichments get a retry path via the `enriched_at` flag, as described in the previous post.)
+Claude calls cost money. Re-enriching the same permits would waste funds and generate duplicate leads and Slack notifications. Dedup prevents this.
 
-This matters because Claude API calls have a cost. Even at $0.001 per call, re-enriching the same 10 permits every time the pipeline runs would add up — and more importantly, would generate duplicate leads and duplicate Slack notifications. The dedup check keeps all of that clean.
+The rule: if seen, skip. If new, enrich, store, and alert.
 
-The rule is simple: if you've seen it, skip it. If you haven't seen it, enrich it, store it, and tell someone about it.
-
-Next post: the telling-someone-about-it part — the Slack digest.
+Next: the Slack digest.

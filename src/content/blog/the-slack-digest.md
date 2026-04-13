@@ -1,67 +1,39 @@
 ---
 title: 'The Slack digest — no dashboard, no problem'
-description: 'The entire "UI" of Group Scout is a Slack message. Here is why that was the right call, and what it actually looks like.'
+description: 'The Group Scout "UI" is a Slack message. meeting the sales team where they work minimizes friction.'
 pubDate: '2026-04-07'
 draft: true
 ---
 
-At some point in every side project, you have to decide where the output goes.
+Side projects eventually need an output. A web dashboard with filtering and CRM features would look impressive. But it would take weeks to build and might be ignored.
 
-A web dashboard was the obvious answer. Build a nice UI, add filtering, maybe a CRM-lite to track outreach. It would look impressive.
-
-It would also take weeks to build, require a login, and probably be ignored after the first month. I've seen this pattern too many times.
-
-The actual requirement was simple: my wife needs to see this week's leads, on her phone, on Monday morning. She already has Slack.
-
-So the entire "UI" is a Slack webhook.
-
-Slack happens to be the delivery mechanism here, but the real design goal is minimizing friction by meeting the sales team where they already work.
+My wife needs to see leads on her phone Monday morning. She already uses Slack. Meeting the sales team where they work minimizes friction.
 
 ---
 
 ## How Slack incoming webhooks work
 
-A Slack incoming webhook is a URL that accepts a POST request with a JSON payload and posts a message to a specific channel. That's it. No OAuth. No app setup beyond generating the webhook URL in Slack settings. No SDK required.
+A Slack incoming webhook accepts a POST request with a JSON payload and posts a message to a channel. It requires no OAuth, just a URL from Slack settings.
 
-The payload is Slack's Block Kit format — a structured JSON format for rich message layouts. Sections, dividers, buttons, markdown text. It's more expressive than plain text and much simpler than building a frontend.
+The payload uses Slack's Block Kit for rich layouts. Sections, dividers, and buttons make it more expressive than plain text but simpler than a frontend.
 
 ---
 
 ## What a lead card looks like
 
-Each lead in the digest gets its own Block Kit card:
-
-```
-🔥 Warehouse — 12500 Vulcan Way                              Score: 9/10
-📍 12500 Vulcan Way  |  💰 $1,200,000 CAD  |  🏢 GC: BuildRight Contracting
-📞 Contractor: BuildRight Contracting (604)555-0199  |  Applicant: ABC Developments Ltd
-🕐 Outreach: Reach out now — crews mobilizing in 4–6 weeks
-📝 GC is BuildRight. Check LinkedIn for travel coordinator.
-📄 View source document
-```
-
-The "View source document" link goes directly to the PDF the permit came from. If you want to verify the details or pull more context, one click gets you there.
+Each lead gets a Block Kit card. The "View source document" link opens the original permit PDF for verification or context.
 
 ---
 
 ## Score emoji tiers
 
-The priority score comes from Claude's enrichment (1–10). The emoji in the card header maps to the tier:
-
-| Score | Emoji | What it means |
-|---|---|---|
-| 9–10 | 🔥 | Call today |
-| 7–8 | ⚡ | High priority this week |
-| 5–6 | 👀 | Worth monitoring |
-| < 5 | 📌 | Low priority, FYI |
-
-The sales manager can scan the digest and immediately know which leads to act on first. No ranking to do manually. No interpretation needed.
+Claude's enrichment provides a priority score (1–10). The card header's emoji maps to a tier so the sales manager can scan and prioritize leads immediately.
 
 ---
 
 ## The smoketest flag
 
-One thing I added early: a `-testslack` flag on the smoketest command that sends two fake leads to the webhook with known data. This lets me verify the Block Kit layout without running the full pipeline — no real permits, no real Claude calls, no real DB.
+A `-testslack` flag on the smoketest command sends two fake leads to the webhook. This verifies the Block Kit layout without running the full pipeline — no real permits, Claude calls, or database entries.
 
 ```bash
 go run ./cmd/smoketest/ -testslack
@@ -69,18 +41,14 @@ go run ./cmd/smoketest/ -testslack
 
 Two cards hit the Slack channel. If they look right, the formatter is working. If something's off — wrong emoji tier, missing field, broken link — I catch it before a real run.
 
-This is the kind of small quality-of-life thing that pays back immediately. The first time I changed the card layout and needed to check it, the smoketest saved me from running the full pipeline three times trying to see the output.
+This small improvement pays back immediately. When I change the card layout, the smoketest saves me from running the full pipeline to see the output.
 
 ---
 
 ## Why this was the right call
 
-Here is the honest reason the Slack approach works: the sales manager's job is not to log into a dashboard and check for leads. Her job is to make calls. The tool should remove friction from that process, not add a new surface to manage.
+The Slack approach works because a sales manager makes calls; she doesn't check dashboards. The tool should remove friction.
 
-A Slack message Monday morning means the leads are already in the place she's already working. No extra step. No new app. Just: here are the projects, here's why they matter, here's when to reach out.
+A Monday morning Slack message puts leads where she already works. The pipeline reads PDFs, calls APIs, and sorts by priority. The sales manager decides who to call and how to pitch. This division of labor is the point.
 
-The pipeline does the boring part — reading PDFs, calling APIs, sorting by priority. The sales manager does the human part — deciding who to call, how to pitch, what to offer.
-
-That division of labour is the whole point.
-
-Next: where the pipeline stands right now and what's coming next.
+Next: current status and future plans.

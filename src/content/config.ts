@@ -9,12 +9,26 @@ const blogCollection = defineCollection({
     updatedDate: z.coerce.date().optional(),
     heroImage: z.string().optional(),
     tags: z.array(z.string()).optional(),
-    // Thêm readingTime vào schema nhưng đặt là optional
     readingTime: z.string().optional(),
+    draft: z.boolean().optional(),
+  }),
+});
+
+const engineeringCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    pubDate: z.coerce.date(),
+    updatedDate: z.coerce.date().optional(),
+    tags: z.array(z.string()).optional(),
+    source: z.string().optional(),
+    readingTime: z.string().optional(),
+    draft: z.boolean().optional(),
   }),
 });
 
 export const collections = {
   'blog': blogCollection,
+  'engineering': engineeringCollection,
 };
-

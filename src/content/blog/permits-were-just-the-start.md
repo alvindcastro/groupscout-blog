@@ -1,63 +1,53 @@
 ---
 title: "Permits were just the start"
-description: "Building permits were the obvious first signal. They turned out not to be the only — or even the best — one."
+description: "Building permits were the obvious first signal, but they aren't the only — or best — one."
 pubDate: '2026-04-09'
 ---
 
-When I started Group Scout, building permits were the obvious first signal.
+Building permits were the first signal for Group Scout. They are public and updated regularly. Most importantly, they appear weeks before crews arrive. This gap between *permit issuance* and *crew mobilization* allows hotel sales teams to act rather than react.
 
-They’re public, updated regularly, and — most importantly — they show up weeks before crews actually arrive. That gap between *permit issued* and *crews mobilizing* is where hotel sales teams can get ahead instead of reacting.
-
-Permits were a good place to start. They still are.
-
-But once the pipeline was running end‑to‑end, it became clear they couldn’t be the only signal.
+Permits were a good start, but they cannot be the only signal.
 
 ---
 
 ## What makes a good signal
 
-Not all public data is useful.
-
-The sources that actually matter tend to share a few traits:
-- public and updated on a predictable cadence  
+Not all public data is useful. Useful sources share several traits:
+- public and updated predictably  
 - visible *before* demand materializes  
 - correlated with large, temporary groups  
-- stable enough to parse without constant breakage  
+- stable enough to parse reliably
 
-Permits check most of these boxes — but not all demand shows up there first.
+Permits check most boxes, but not all demand appears there first.
 
 ---
 
 ## Why expand beyond permits
 
-This became obvious after a few conversations at home, when my “client” — my wife — asked a simple question:
+My wife asked a simple question:
 
 > “Can this pick up film productions too?”
 
-For hotel sales, film and TV shoots behave a lot like construction crews: large teams, fixed timelines, and a real need for nearby accommodation. In some cases, they’re an even stronger signal.
+Film and TV shoots resemble construction crews: large teams, fixed timelines, and a need for nearby accommodation. Sometimes they are a stronger signal.
 
-Once that question was on the table, expanding beyond permits stopped being hypothetical and became a requirement.
+Expanding beyond permits became a requirement.
 
 ---
 
 ## One pipeline, many inputs
 
-Every source in Group Scout implements the same `Collector` interface:
+Every Group Scout source implements the `Collector` interface:
 - collect raw data  
-- map it into a `RawProject`  
-- hand it to the same dedup → enrich → notify pipeline  
+- map it to a `RawProject`  
+- hand it to the dedup → enrich → notify pipeline  
 
-Everything downstream stays the same.
-
-If a source can produce a stable record and a dedup key, it works.
+Downstream processes remain the same. If a source produces a stable record and a dedup key, it works.
 
 ---
 
 ## Why this matters
 
 Permits tell you *what might get built*.  
-Other sources tell you *who is already mobilizing*.
+Other sources tell you *who is mobilizing*.
 
-Different signals. Same pipeline. Same delivery.
-
-That’s the pattern Group Scout is built around.
+Different signals, same pipeline, same delivery. That's the Group Scout pattern.

@@ -1,20 +1,21 @@
 ---
-title: 'The stack — Go, SQLite, and a $0.001 AI call'
-description: 'The technology choices behind Group Scout, and why each one made sense for a background data pipeline built by one person on weekends.'
-pubDate: '2026-03-30'
+title: 'The stack — Go, Postgres, and pgvector'
+description: 'The technology behind Group Scout and why these choices fit a background data pipeline.'
+pubDate: '2026-04-12'
 ---
 
-One of the things I wanted to do with this blog is actually explain the technology choices — not just list them, but explain *why*. Because the choices are usually more interesting than the stack itself.
+I want to explain my technology choices. The *why* is more interesting than the stack itself.
 
 Here's what Group Scout is built on:
 
 | Layer | Technology | Why |
 |---|---|---|
 | Language | Go | Background pipelines are Go's natural habitat |
-| Database | SQLite | Zero ops, runs anywhere, no C compiler headaches |
+| Database | PostgreSQL + pgvector | Production stability, UUIDs, and vector support for RAG |
 | AI enrichment | Claude Haiku (Anthropic) | ~$0.001 per permit, fast, great at structured JSON |
+| Infrastructure | Docker Compose | Reproducible environments for the app, DB, and n8n |
 | Notifications | Slack incoming webhook | No app setup, Block Kit makes rich cards easy |
-| Config | `.env` + environment variables | 12-factor: no secrets ever touch the code |
+| Monitoring | Sentry + structured logging | Production-grade error tracking and observability |
 
 No framework. No ORM. No generated code. Just `database/sql`, `net/http`, and the standard library.
 
@@ -22,11 +23,9 @@ No framework. No ORM. No generated code. Just `database/sql`, `net/http`, and th
 
 ## Why Go
 
-I know Go well. That's the honest answer. But it's also genuinely the right tool for this job.
+I know Go well, and it is the right tool for background data pipelines. Goroutines simplify concurrent HTTP calls. The type system catches compile-time mistakes that would be runtime bugs in Python or JavaScript. The binary compiles to a single executable.
 
-Go is excellent at background data pipelines. Goroutines make concurrent HTTP calls easy. The type system catches mistakes at compile time that would surface as runtime bugs in Python or JavaScript. The binary compiles to a single executable you can run anywhere — no runtime, no interpreter, no dependency hell.
-
-The codebase is also naturally organized around interfaces, which matters a lot for a pipeline with multiple data sources. The `Collector` interface looks like this:
+The codebase uses interfaces, which helps manage multiple data sources. The `Collector` interface is:
 
 ```go
 type Collector interface {
@@ -35,62 +34,61 @@ type Collector interface {
 }
 ```
 
-Every data source implements that interface. Richmond building permits: one implementation. BC Bid contract awards: another implementation. When I add a third source, the pipeline doesn't change — I just write a new struct that satisfies the interface. That kind of clean extensibility is easy to achieve in Go.
+Every data source implements this interface. Building permits use one implementation; contract awards use another. Adding a third source doesn't change the pipeline; I just write a new struct. Go makes this extensibility clean.
 
 ---
 
-## Why SQLite (and why not the obvious library)
+## Why PostgreSQL (and why pgvector)
 
-SQLite for local development is a no-brainer — zero setup, single file, runs anywhere, good enough for the data volumes here (tens to hundreds of leads per week, not millions).
+I started with SQLite, which was perfect for the first few weeks. As the system grew, I needed more. I moved to PostgreSQL (using `pgvector/pgvector:pg17`) for:
+1. **Native UUIDs:** No string-to-ID mapping.
+2. **JSONB support:** Indexing and querying raw project data.
+3. **pgvector:** Storing lead embeddings enables similarity searches to find "leads like this one" or match against historical "won" business.
 
-The interesting choice is *which* SQLite library. The obvious one is `mattn/go-sqlite3` — it's been around forever, widely used, battle-tested. The problem: it requires CGO, which means you need a C compiler on your machine.
+I used `golang-migrate` for migrations and `github.com/jackc/pgx/v5` as the driver. It is pure Go and maintains a simple build process.
 
-On a Mac, that's usually fine. On Windows (which is my dev machine), it's a mess. CGO on Windows requires MinGW or a specific GCC setup. I've been burned by this before. An hour of toolchain wrestling to write a database query is not a good use of a Saturday morning.
+---
 
-The alternative is `modernc.org/sqlite` — a port of SQLite to pure Go. No C compiler. No CGO. Same `database/sql` interface. The only tradeoff is slightly slower performance, which does not matter at all for this use case.
+## Why Docker Compose
 
-`modernc` it is.
+Docker Compose handles orchestration for the Group Scout app, Postgres, n8n, Prometheus, and Grafana. `docker compose up -d` makes the ecosystem live.
 
 ---
 
 ## Why Claude Haiku for enrichment
 
-A building permit tells you: there's a $1.2M warehouse being built at this address by this applicant. It doesn't tell you:
-- Whether the crew will be local or fly-in
-- How large the crew is likely to be
-- How long the project will run
-- When to reach out
+A building permit omits:
+- Crew type (local or fly-in)
+- Crew size
+- Project duration
+- Outreach timing
 
-A human reading the permit can make reasonable inferences based on project type, value, location, and the contractor's name. That's exactly what language models are good at.
+A human infers these from project type, value, location, and contractor. Language models excel here.
 
 The interesting part here isn’t learning how to use an LLM — it’s deciding where it earns its keep, and where the system should stay deterministic.
 
-I'm using Claude Haiku (Anthropic's fastest, cheapest model) for this. The cost per permit is approximately $0.001 — less than a tenth of a cent. The pipeline runs weekly on maybe 5–10 filtered permits. The entire enrichment step costs pennies per month.
+I use Claude Haiku. Enrichment costs about $0.001 per permit, or pennies per month. Haiku is fast, taking about a second per permit. Sonnet is more capable but slower and 5x the cost; Haiku does the job.
 
-Haiku is also fast. The enrichment call takes about a second per permit. Sonnet would be more capable but slower and 5x the cost for a use case where Haiku is already doing the job well.
+I chose the smaller model deliberately. Most of the system should remain deterministic.
 
-Choosing the smaller model is deliberate — not because capability doesn’t matter, but because most of the system shouldn’t depend on a model at all.
-
-The model returns structured JSON: priority score, project type, estimated crew size, duration, out-of-town likelihood, outreach timing suggestion, notes. Predictable, parseable, actionable.
+The model returns structured JSON: priority score, project type, crew size, duration, out-of-town likelihood, outreach timing, and notes. Predictable and actionable.
 
 ---
 
 ## Why Slack
 
-The simplest possible answer: my wife already has Slack on her phone.
+My wife already has Slack on her phone. A Monday morning message delivers this week's leads.
 
-Just a message that shows up Monday morning with this week's leads.
+Slack's Block Kit enables rich cards with score badges, priority indicators, and PDF links without frontend code. The "UI" is a webhook POST with structured JSON.
 
-Slack's Block Kit format is also genuinely good for rich card layouts. Score badges, priority indicators, direct links to the source PDF — all of it is possible without writing any frontend code. The "UI" is just a webhook POST with some structured JSON.
-
-The goal was always: useful output, minimum friction. A Slack message nails that.
+I want useful output with minimum friction. Slack nails that.
 
 ---
 
 ## What's not in the stack
 
-No web framework. No ORM. No message queue. No Docker (yet). No external dependencies beyond what's needed.
+No web framework, ORM, or message queue. Just Docker, Postgres, and Go.
 
-This is a weekend project built to solve a real problem. Every dependency you add is a dependency you have to maintain, update, and debug. The standard library does a lot. Start there.
+This weekend project solves a real problem. Every dependency requires maintenance. The standard library does much. Start there.
 
-Next post: building the storage layer — which, counterintuitively, is where I started before writing a single line of scraping code.
+Next: building the storage layer.

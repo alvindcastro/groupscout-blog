@@ -1,0 +1,13 @@
+### Post 1: The "Origins" Post (Current)
+*Best for: Introducing the project and setting the stage.*
+
+I’ve always enjoyed side projects — mostly because they’re how I explore ideas and learn.
+
+Lately, that’s been Group Scout.
+
+It grew out of listening to my wife talk about leads and timing, and wondering whether software could surface better signals earlier from public but inconvenient data.
+
+So I started building a small Go‑based backend, experimenting with LLMs as an assistive layer and wiring things together with tools like n8n — mostly as a way to learn what actually holds up outside of demos.
+
+I’ve been writing through the build and the tradeoffs along the way:
+https://alvindcastro.github.io/groupscout-blog/
