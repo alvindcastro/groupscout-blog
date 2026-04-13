@@ -28,20 +28,7 @@ const engineeringCollection = defineCollection({
   }),
 });
 
-// LinkedIn collection - external content only, not displayed in the blog feed
-const linkedinCollection = defineCollection({
-  type: "content",
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    pubDate: z.coerce.date(),
-    draft: z.boolean().optional(),
-    tags: z.array(z.string()).optional(),
-  }),
-});
-
 export const collections = {
   blog: blogCollection,
   engineering: engineeringCollection,
-  linkedin: linkedinCollection,
 };

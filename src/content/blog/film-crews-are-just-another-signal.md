@@ -5,21 +5,21 @@ pubDate: "2026-04-11"
 draft: true
 ---
 
-Group Scout first used construction crews as a signal. They are predictable and easy to reason about if you see them early.
+Group Scout first used construction crews as a signal. They are predictable if seen early.
 
-They are not the only such group.
+They are one of many such groups.
 
 My wife pointed out another category: film and TV productions.
 
-She emphasized that timing matters and the best leads are the ones seen first.
+She emphasized that timing matters and that the earliest leads are the best.
 
-Large crews. Fixed schedules. Out‑of‑town specialists. And a real need for nearby accommodation for weeks or months at a time.
+Large crews, fixed schedules, and out-of-town specialists require nearby accommodation for weeks or months.
 
 ---
 
 ## Why film and TV matter
 
-A feature film or TV series can bring **80 to 300+ crew**. Department heads and specialists often fly in and need to stay near the set.
+A feature film or TV series can bring eighty to three hundred crew members. Specialists often fly in and stay near the set.
 
 To a hotel sales manager, this resembles construction:
 
@@ -27,15 +27,15 @@ To a hotel sales manager, this resembles construction:
 - defined timelines
 - limited flexibility on location
 
-Sometimes it is a better signal than permits. Productions mobilize quickly, and the booking window is tight.
+Productions mobilize quickly, and the booking window is tight; this signal can surpass permits.
 
 ---
 
 ## Finding the data
 
-A public "In Production" list solves the data problem. It is public, updated regularly, and not obvious.
+A public "In Production" list solves the data problem. It is regular but obscure.
 
-A Salesforce Visualforce endpoint returns fully rendered HTML to a plain HTTP request. Sometimes the best API hides in plain sight.
+A Salesforce Visualforce endpoint returns HTML to a plain HTTP request. Sometimes the best API hides in plain sight.
 
 ---
 
@@ -48,9 +48,7 @@ Each production maps to a `RawProject` and flows through the same steps:
 - scoring
 - Slack delivery
 
-Only the enrichment prompt changes.
-
-That’s the point.
+Only the enrichment prompt changes; that is the point.
 
 ---
 

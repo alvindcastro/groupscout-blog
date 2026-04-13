@@ -5,7 +5,7 @@ pubDate: "2026-04-04"
 draft: false
 ---
 
-When I started Group Scout, I built the storage layer before the scraper. No data to store yet. No enrichment to persist. Just tables, schemas, and a dedup hash function.
+I built the storage layer before the scraper. I had no data to store and no enrichment to persist—only tables, schemas, and a deduplication hash function.
 
 It was the right call.
 
@@ -13,19 +13,19 @@ It was the right call.
 
 ## The three tables
 
-The database has three tables:
+The database contains three tables:
 
-**`raw_projects`** is an append-only log. Every permit the pipeline collects goes here first. It stores the source, external ID, raw JSON data, timestamp, and a dedup hash. I never delete from this table.
+**`raw_projects`** is an append-only log. Every permit goes here first. It stores the source, external ID, raw JSON, timestamp, and a hash. I never delete from this table.
 
-**`leads`** is the enriched output. Each lead references a raw project and adds AI-generated intelligence: priority score, project type, estimated crew size, outreach timing, GC name, and notes. The sales team acts on this data.
+**`leads`** contains the enriched output. Each lead references a raw project and adds AI-generated data: priority, type, crew size, timing, contractor, and notes. The sales team acts on this information.
 
-**`outreach_log`** tracks who reached out to which lead, through which channel, and the outcome. I haven't wired it up yet, but the table exists. Building the schema early prepares the data model for the feature.
+**`outreach_log`** tracks contacts, channels, and outcomes. Although not yet connected, the table exists. Building the schema early prepares the data model.
 
 ---
 
-## The dedup hash — the most important thing in the pipeline
+## The dedup hash — the pipeline's core
 
-Every permit gets a SHA-256 hash derived from its folder number, address, and issue date. Before the pipeline spends a Claude API call, it checks if that hash exists.
+Every permit receives a SHA-256 hash derived from its folder number, address, and issue date. Before calling the Claude API, the pipeline checks if the hash exists.
 
 ```go
 func HashProject(source, externalID, title string) string {
@@ -35,15 +35,15 @@ func HashProject(source, externalID, title string) string {
 }
 ```
 
-If it exists, the pipeline skips it. If not, it enriches, persists, and notifies.
+If the hash exists, the pipeline skips the permit; otherwise, it enriches, persists, and notifies.
 
-This matters for several reasons:
+This approach succeeds for several reasons:
 
-**The pipeline runs as often as needed.** One collector publishes permits weekly, but I run the pipeline twice a week to catch new reports. Without dedup, every second run would re-enrich permits and flood Slack with duplicates.
+**The pipeline runs as needed.** Although one collector publishes permits weekly, I run the pipeline twice a week to catch new reports. Without deduplication, the second run would re-enrich permits and flood Slack with duplicates.
 
-**A permit can appear in multiple reports.** Many municipal reports include permits from previous weeks. Without dedup, I would enrich the same permit multiple times.
+**A permit can appear in multiple reports.** Many municipal reports include permits from previous weeks. Deduplication prevents redundant enrichment.
 
-**Extra runs cost nothing.** If the pipeline finds nothing new, the check takes milliseconds. No AI calls, no Slack messages. The run is effectively free.
+**Extra runs cost nothing.** If the pipeline finds nothing new, the check takes milliseconds. With no AI calls or Slack messages, the run is free.
 
 ---
 
@@ -51,20 +51,20 @@ This matters for several reasons:
 
 The pipeline writes the raw permit to `raw_projects` _before_ calling Claude.
 
-API calls fail. Claude's API might be down, credits might be empty, or the JSON might not parse. If enrichment fails, I still have the raw permit data.
+API calls fail. Claude might be down, credits might be exhausted, or the JSON might not parse. If enrichment fails, the raw data remains.
 
-If enrichment failed, I wouldn't want to skip it forever. I use an `enriched_at` timestamp on the raw record. On startup, the pipeline finds raw records without a corresponding lead and retries them. Failed enrichments queue themselves automatically.
+If enrichment fails, the pipeline should retry. I use an `enriched_at` timestamp on the raw record. On startup, the pipeline identifies raw records without a lead and retries them. Failed enrichments queue themselves.
 
-Designing for this from the start is easier than adding it later.
+Designing for this early is easier than adding it later.
 
 ---
 
 ## Why foundation-first
 
-If I built the scraper first and it worked, I might ship without a storage layer. A week later, I'd have untrustworthy data and be bolting a database onto a pipeline not designed for one.
+If I built the scraper first, I might ship without a storage layer. A week later, I would have untrustworthy data and a database bolted onto a mismatched pipeline.
 
-Build the storage layer first. You know the data's shape. The scraper produces records that fit the schema. Enrichment fills the expected fields.
+Build the storage layer first. You then know the shape of the data. The scraper produces records that fit the schema, and enrichment fills the expected fields.
 
-It's slower to start. The first week produces no visible output. But the pipeline lands on a designed foundation.
+Starting is slower; the first week produces no visible output. But the pipeline rests on a designed foundation.
 
-Next: scraping building permit PDFs from a city website with no API.
+Next: scraping permit PDFs.

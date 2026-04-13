@@ -5,19 +5,19 @@ pubDate: "2026-04-14"
 draft: true
 ---
 
-A scheduled data pipeline is only as good as your visibility into its failures. It _will_ fail: external sites change, PDFs corrupt, and API credits expire.
+A scheduled data pipeline is only as good as its visibility. It will fail: external sites change, PDFs corrupt, and API credits expire.
 
-I shifted Group Scout's focus to "system reliability."
+I focused Group Scout on system reliability.
 
-Here’s what I added to make it production-ready.
+I added these features for production readiness:
 
 ---
 
 ## 1. Structured Logging with `log/slog`
 
-I replaced standard `fmt.Println` statements. They work for debugging but are hard to query in production.
+I replaced `fmt.Println` statements. They suffice for debugging but are difficult to query in production.
 
-I moved to `log/slog` (added in Go 1.21). Every log message is now JSON:
+I moved to `log/slog`. Every log message is now JSON:
 
 ```json
 {
@@ -29,7 +29,7 @@ I moved to `log/slog` (added in Go 1.21). Every log message is now JSON:
 }
 ```
 
-I can pipe these logs into **Grafana Loki** and run queries: _"How many permits did I collect last week?"_ or _"Show all errors from the Claude enrichment service."_
+I pipe these logs into **Grafana Loki** and run queries, such as "How many permits did I collect last week?" or "Show all errors from the Claude service."
 
 ---
 
@@ -37,23 +37,23 @@ I can pipe these logs into **Grafana Loki** and run queries: _"How many permits 
 
 Structured logging provides visibility; Sentry provides **interruption**.
 
-If a scraper fails or an API call returns a 500, I want to know immediately. Sentry captures these errors in real-time with full stack traces and context.
+If a scraper fails or an API call returns a 500, I want immediate notice. Sentry captures these errors in real-time with stack traces and context.
 
-Initializing Sentry at the start of `main()` gives coverage across the app. I know exactly which line of code failed on which PDF URL.
+Initializing Sentry at the start of `main()` provides coverage across the app. I know which line of code failed and on which URL.
 
 ---
 
 ## 3. Health Checks
 
-A Docker container can "run" while the app inside is deadlocked or disconnected.
+A Docker container can run while the application inside is deadlocked or disconnected.
 
 I added a `/health` endpoint that:
 
-- **Pings the Database:** Verifies the Postgres connection.
-- **Checks Env Vars:** Ensures critical configuration (like API keys) is present.
-- **Validates Scraper State:** Confirms scrapers are registered and ready.
+- **Pings the Database:** verifies the Postgres connection.
+- **Checks Env Vars:** ensures critical configuration is present.
+- **Validates Scraper State:** confirms scrapers are ready.
 
-Docker and n8n use this endpoint to verify the system is healthy before triggering a run.
+Docker and n8n use this endpoint to verify system health before triggering a run.
 
 ---
 
@@ -66,12 +66,12 @@ I log basic metrics for every run:
 - Priority score distribution
 - API cost estimation
 
-This data provides a clear picture of efficiency over time.
+This data reveals efficiency over time.
 
 ---
 
 ## Why bother?
 
-Group Scout is a small project, but "production-ready" means **peace of mind**. A self-monitoring system lets me build new signals instead of debugging old ones.
+Group Scout is a small project, but production readiness brings peace of mind. A self-monitoring system allows me to build new signals instead of debugging old ones.
 
-Next: orchestrating collectors and building the admin UI.
+Next: orchestrating collectors and the admin UI.

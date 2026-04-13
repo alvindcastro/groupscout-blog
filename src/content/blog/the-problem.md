@@ -1,50 +1,50 @@
 ---
-title: "The problem — why you can't just wait for the phone to ring"
+title: "The problem — finding the signal in the noise"
 description: "Construction crew lodging is valuable but hard to find. Here's why."
 pubDate: "2026-03-29"
 draft: false
 ---
 
-Explain the business case before the code.
+Begin with the business case.
 
-When a major construction project breaks ground near a hotel — a warehouse, commercial development, or pipeline upgrade — the general contractor (GC) houses the crew. I mean 20 to 100+ workers rotating for three months to a year.
+When a major construction project begins near a hotel—a warehouse, commercial development, or pipeline upgrade—the general contractor houses the crew. Twenty to one hundred workers rotate for three months to a year.
 
-That means extended-stay rates, direct company billing, weekly room blocks, and per-diem meal deals. A hotel near an industrial area should chase this business.
+This business brings extended-stay rates, direct company billing, weekly room blocks, and meal deals. Hotels near industrial areas should chase it.
 
-A hotel near transportation hubs with ample truck parking, an on-site restaurant, and early breakfast service suits rotating crews.
+Hotels near transportation hubs with truck parking, restaurants, and early breakfast suit these crews.
 
-So why doesn't this business just... show up?
+Why does this business fail to appear?
 
 ---
 
 ## The timing problem
 
-Construction crews book hotels before you know they're looking. By the time they search, you're late. The GC's travel coordinator already has a shortlist.
+Construction crews book hotels before you know they are looking. By the time they search, you are late; the coordinator has already made a shortlist.
 
-Win this business weeks or months earlier — when the project is permitted, the contract awarded, or the news breaks. Call and say:
+Win this business earlier—when the city permits the project, the client awards the contract, or the news breaks. Call and say:
 "I saw your project just got permitted. I'm nearby. Let me tell you about our extended-stay rates."
 
-An early call solves the GC's upcoming problem. It positions the hotel as proactive. It wins the business.
+An early call solves the upcoming problem, positions the hotel as proactive, and wins the business.
 
-The problem is finding the signal early enough.
+The challenge is finding the signal early.
 
 ---
 
-## The data is public — but not especially accessible
+## The data is public — but inaccessible
 
 Information is public.
 
-Many cities publish weekly building permit reports. Commercial permits — warehouse, office, restaurant, hotel, industrial — appear there. They list the permit number, address, applicant, contractor, construction value, work type, and issue date. Cities post these as PDFs.
+Many cities publish weekly building permit reports. Commercial permits for warehouses, offices, restaurants, hotels, and industrial sites appear there. They list the permit number, address, applicant, contractor, value, work type, and issue date. Cities post these as PDFs.
 
-I found no obvious APIs or structured feeds. Many cities still only publish PDFs. Regardless of the delivery, the data exists.
+Obvious APIs and structured feeds are missing. Many cities only publish PDFs. Regardless of the delivery, the data exists.
 
-Most hotel sales teams don't track these reports consistently. Google Alerts surface news days late. Trade publications focus on the largest projects and miss mid‑sized leads. Word of mouth is hit‑or‑miss.
+Most hotel sales teams fail to track these reports. Google Alerts surface news late; trade publications miss mid-sized leads; word of mouth is unreliable.
 
-The signal is public and updated regularly. The gap between “permit issued” and “crews mobilizing” is typically 8–12 weeks — plenty of time to call if you know where to look.
+The signal is public and regular. The eight-to-twelve-week gap between permit issuance and mobilization allows ample time to call.
 
 ---
 
-## What Group Scout does with that
+## How Group Scout helps
 
 Group Scout reads permits, filters for relevance, identifies targets, and alerts the sales team.
 
@@ -53,8 +53,8 @@ Group Scout reads permits, filters for relevance, identifies targets, and alerts
 - Using an LLM to estimate crew size, project duration, and priority
 - Producing a prioritized list
 
-The LLM is useful. A permit shows a $1.2M warehouse build at an address. It doesn't specify if the crew is local or a sixty-person fly-in team. An LLM infers these details from the project type, value, and description to help flag the best leads.
+The LLM helps. A permit shows a building value and address but does not specify crew size or origin. An LLM infers these details from the project description to flag the best leads.
 
-Permits are the start. Other public sources like contract awards, planning applications, and infrastructure projects signal group demand. I add sources cautiously to improve signal quality.
+Permits are only the beginning. Other sources, such as contract awards and planning applications, signal demand. I add sources cautiously to maintain signal quality.
 
 The next posts cover the tech stack.

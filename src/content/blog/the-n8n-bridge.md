@@ -5,19 +5,19 @@ pubDate: "2026-04-06"
 draft: true
 ---
 
-I avoid writing code for _everything_. Developers often want to write a custom scheduler, a web UI, or a Gmail integration from scratch. But my time is limited, and those features aren't the "core."
+I avoid writing code for everything. Developers often want to write custom schedulers, web UIs, or Gmail integrations, but my time is limited and those features are not core.
 
-Group Scout's core is **signal detection and enrichment**. The "workflow" — when to run, manual overrides, and pushing data to a CRM — is where n8n helps.
+The core of Group Scout is signal detection and enrichment. The workflow—scheduling, manual overrides, and CRM integration—is where n8n helps.
 
 ---
 
 ## What is n8n?
 
-n8n is an open-source workflow automation tool. It's the "glue" connecting Group Scout to the world.
+n8n is an open-source automation tool; it connects Group Scout to the world.
 
-Instead of a complex Go scheduling system, I have a `/run` endpoint. n8n calls it every Monday at 9:00 AM.
+Instead of a complex scheduling system, I have a `/run` endpoint. n8n calls it every Monday at 9:00 AM.
 
-Instead of a UI for adding leads from news articles, I use an n8n webhook. If my wife sees a project on LinkedIn, she can (eventually) share the link to a Slack command. n8n handles extraction and pushes it to Group Scout.
+Instead of a UI for adding leads from news articles, I use an n8n webhook. If my wife sees a project on LinkedIn, she can share the link to a Slack command; n8n then handles extraction and pushes it to Group Scout.
 
 ---
 
@@ -25,14 +25,14 @@ Instead of a UI for adding leads from news articles, I use an n8n webhook. If my
 
 The architecture looks like this:
 
-1.  **Group Scout (Go)**: The "engine." It scrapes permit sites, talks to Claude, and stores leads in PostgreSQL.
-2.  **n8n**: The "operator." It decides _when_ the engine runs and acts as a gateway for external data.
+1. **Group Scout (Go)**: the engine. It scrapes permit sites, communicates with Claude, and stores leads in PostgreSQL.
+2. **n8n**: the operator. It determines when the engine runs and acts as a gateway for external data.
 
-I've exposed a few key endpoints to n8n:
+I have exposed key endpoints to n8n:
 
-- `POST /run`: Triggers the full collection and enrichment pipeline.
-- `POST /n8n/webhook`: Accepts structured JSON from n8n to create a lead from an external source (like an RSS feed or a Google Sheet).
-- `POST /digest`: Triggers the weekly summary notification.
+- `POST /run`: triggers collection and enrichment.
+- `POST /n8n/webhook`: accepts JSON from n8n to create a lead from an external source.
+- `POST /digest`: triggers the weekly summary.
 
 ---
 
@@ -40,16 +40,16 @@ I've exposed a few key endpoints to n8n:
 
 Iteration is fast.
 
-Last week, I pulled leads from a construction news RSS feed. Doing this in Go would require a new `Collector`, RSS parsing, rate limiting, and a redeploy.
+Last week, I pulled leads from an RSS feed. Doing this in Go would require a new `Collector`, RSS parsing, rate limiting, and a redeploy.
 
-In n8n, I dragged an "RSS Read" node, added a "Filter" node, and connected it to the Group Scout `/n8n/webhook` node. It took 10 minutes.
+In n8n, I connected an 'RSS Read' node and a 'Filter' node to the Group Scout webhook; it took ten minutes.
 
-This keeps the Go codebase clean. The backend is a reliable data engine. External integrations live in a visual workflow tool for easy debugging and change.
+This keeps the Go codebase clean. The backend remains a reliable data engine, while external integrations live in a workflow tool for easy debugging.
 
 ---
 
-## Security (The "Bearer" minimum)
+## Security
 
-These endpoints trigger costly AI calls, so I secured them. I added Bearer token authentication middleware in Go. In n8n, I set up "Header Auth" with that token. It’s simple and effective.
+Because these endpoints trigger costly AI calls, I secured them. I added Bearer token authentication in Go and set up 'Header Auth' in n8n. It is simple and effective.
 
 Next: the municipal building permit collector.

@@ -8,35 +8,35 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     <div class="prose prose-zinc dark:prose-invert max-w-none">
       <p>
-        Group Scout is a Go-based pipeline that monitors public data sources for hotel group sales
-        leads — construction projects, contract awards, film productions, sports events — and
-        surfaces actionable intelligence to a hotel sales team via Slack.
+        Group Scout is a Go-based pipeline that monitors public data for hotel group sales
+        leads—construction projects, contract awards, film productions, and sports events. It
+        presents actionable intelligence to a sales team via Slack.
       </p>
 
       <p>
-        The problem it solves: hotel group sales requires proactive outreach, not inbound waiting.
-        The signals that predict large room blocks exist in public data — building permits, contract
-        awards, permit filings — but they’re scattered, inconsistent, and slow to connect manually.
-        Group Scout automates the collection, deduplication, enrichment, and delivery.
+        The problem: hotel group sales requires proactive outreach.
+        Signals that predict room blocks exist in public data—building permits, contract
+        awards, and permit filings—but are scattered and inconsistent.
+        Group Scout automates collection, deduplication, enrichment, and delivery.
       </p>
 
       <p>
-        The stack: Go backend with a Postgres datastore, Claude for structured enrichment and lead
-        scoring, and a Slack Block Kit digest as the delivery layer. Data sources include municipal
-        building permits and contract award filings. The pipeline runs on a schedule and posts only
-        net-new leads above a configurable value threshold.
+        The stack: Go backend with a Postgres datastore, Claude for structured enrichment,
+        and a Slack Block Kit digest for delivery. Data sources include municipal
+        building permits and contract awards. The pipeline runs on a schedule and posts only
+        new leads above a configurable threshold.
       </p>
 
       <p>
-        This site has two blogs. The <a href="/blog/">build log</a> traces the product journey —
-        decisions made, things that didn’t work, and the domain knowledge picked up along the way.
-        The <a href="/engineering/">engineering notes</a> go deeper on technical implementation:
-        architecture, data models, Go patterns, and LLM integration design.
+        This site contains two blogs. The <a href="/blog/">build log</a> records the product journey:
+        decisions, failures, and domain knowledge.
+        The <a href="/engineering/">engineering notes</a> examine technical implementations:
+        architecture, data models, Go patterns, and LLM integration.
       </p>
 
       <p>
-        The source is at <a href="https://github.com/alvindcastro/groupscout">github.com/alvindcastro/groupscout</a>.
-        For the person behind it, visit <a href="https://alvindcastro.github.io" target="_blank" rel="noopener noreferrer">alvindcastro.github.io</a>.
+        The source code is at <a href="https://github.com/alvindcastro/groupscout">github.com/alvindcastro/groupscout</a>.
+        To learn about the developer, visit <a href="https://alvindcastro.github.io" target="_blank" rel="noopener noreferrer">alvindcastro.github.io</a>.
       </p>
     </div>
   </div>

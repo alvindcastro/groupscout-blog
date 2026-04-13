@@ -1,34 +1,33 @@
 # groupscout-blog
 
-A blog documenting the building of [Group Scout](https://github.com/alvindcastro/groupscout) — a group lodging demand intelligence tool for hotel sales teams.
+This blog documents the development of [Group Scout](https://github.com/alvindcastro/groupscout), a tool that identifies group lodging demand for hotel sales teams.
 
-My wife works as a sales manager at a hotel. I’m a software developer. Combine those two perspectives with my habit of starting side projects, and Group Scout was probably inevitable.
+My wife manages hotel sales; I develop software. These perspectives, combined with my habit of starting side projects, made Group Scout inevitable.
 
-The project analyzes public data to identify and prioritize potential group lodging opportunities.
+The project analyzes public data to identify and prioritize group lodging opportunities.
 
-This blog follows the journey: the ideas, the missteps, the “wait, how does hotel sales even work?” moments, and (hopefully) the wins.
+This blog records the journey: the ideas, the missteps, the technical challenges, and the successes.
 
 ## Project Structure
 
-- `src/content/blog/` — The main blog posts.
-- `src/content/engineering/` — Deep dives into technical implementations.
-- `src/content/linkedin/` — Summarized versions for social sharing.
-- `src/layouts/` — Astro layouts for different post types.
-- `src/components/` — Reusable Astro components.
+- `src/content/blog/` — Main blog posts.
+- `src/content/engineering/` — Technical deep dives.
+- `src/layouts/` — Astro layouts.
+- `src/components/` — Reusable components.
 
 ## Commands
 
-All commands are run from the root of the project, from a terminal:
+Run all commands from the project root:
 
 | Command                  | Action                                           |
 | :----------------------- | :----------------------------------------------- |
-| `npm install`            | Installs dependencies                            |
-| `npm run dev`            | Starts local dev server at `localhost:4321`      |
-| `npm run build`          | Build your production site to `./dist/`          |
-| `npm run preview`        | Preview your build locally, before deploying     |
-| `npm run astro ...`      | Run CLI commands like `astro add`, `astro check` |
-| `npx prettier --write .` | Fix code formatting issues                       |
+| `npm install`            | Install dependencies                             |
+| `npm run dev`            | Start the local dev server at `localhost:4321`   |
+| `npm run build`          | Build the production site in `./dist/`           |
+| `npm run preview`        | Preview the build locally                        |
+| `npm run astro ...`      | Run Astro CLI commands                           |
+| `npx prettier --write .` | Format the code                                  |
 
 ---
 
-_Go backend — work in progress. Blog — also a work in progress._
+_The Go backend and this blog are works in progress._

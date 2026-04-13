@@ -1,15 +1,15 @@
 ---
 title: "Cracking the PDF — no API, no problem (mostly)"
-description: "Municipalities often publish building permits as weekly PDFs with no API. A pure Go PDF library returned zero rows. Then came the parser bug that looked like a config bug. Here is how all of it got fixed."
+description: "Municipalities often publish building permits as PDFs without an API. A pure Go PDF library failed, and a parser bug masqueraded as a configuration error. Here is how I fixed them."
 pubDate: "2026-04-05"
 draft: false
 ---
 
 > This post focuses on one city’s permit PDFs, but these parsing problems are common to many “PDF‑as‑data” systems.
 
-The target city for my first collector does not have a building permits API.
+The target city for my first collector lacks a building permits API.
 
-I knew this. I checked. There's a data portal and some datasets, but weekly building permit reports are PDFs at a known URL. To get the data, I scrape the page, download the PDF, and parse the text.
+I checked the data portal and found datasets, but weekly reports remain PDFs at a known URL. To get the data, I scrape the page, download the PDF, and parse the text.
 
 Fine. I've done worse.
 
@@ -17,7 +17,7 @@ Fine. I've done worse.
 
 ## Step one: finding the PDF
 
-The reports page has a consistent HTML structure. Each weekly report is a link to a PDF at a URL like:
+The reports page has a consistent HTML structure; each weekly report links to a PDF at a URL like:
 
 ```
 /__shared/assets/buildingreport12345.pdf
@@ -29,46 +29,46 @@ A single regex finds it:
 var buildingReportRe = regexp.MustCompile(`/__shared/assets/buildingreport[^"]+\.pdf`)
 ```
 
-That part worked. One HTTP GET and one regex gave me the latest report's URL. I download it to a temp file and parse.
+One HTTP GET and one regex provided the URL. I download the report to a temporary file and parse it.
 
 ---
 
 ## The PDF library that returned zero rows
 
-I first tried `github.com/ledongthuc/pdf` — a pure Go PDF text extraction library. It's well-maintained and works on most PDFs.
+I first tried `pdf`, a pure Go text extraction library. It works on most PDFs.
 
 The target city's PDFs are not most PDFs.
 
 The library returned zero rows. No parsing error, no panic, no warning — just silence.
 
-These PDFs use a non-standard font encoding that the library cannot decode. It cannot read the text. This common PDF problem has no clean pure-Go fix.
+The library cannot decode the non-standard font encoding used in these PDFs. This common problem lacks a pure Go solution.
 
 I had two options:
 
 1. Find another pure Go library and hope it handles the encoding.
 2. Use `pdftotext`.
 
-`pdftotext`, part of the Poppler library, is battle-tested. It handles encoding edge cases and is bundled with Git for Windows.
+`pdftotext`, part of the Poppler library, handles encoding edge cases and is bundled with Git for Windows.
 
 ```go
 out, err := exec.Command(pdftotext, path, "-").Output()
 ```
 
-It produces clean plain text. Every permit and every field is readable.
+It produces clean text; every permit and field is readable.
 
-The lesson: don't fight encoding in a pure Go library. Use a tool that solved the problem twenty years ago.
+Lesson: do not fight encoding in a pure Go library. Use a tool that solved the problem twenty years ago.
 
 ---
 
 ## The parser bug that looked like a config bug
 
-This build log entry matters because a bug can mislead you.
+A bug can mislead you.
 
-After switching to `pdftotext`, the collector parsed 20 permit records. None passed the $500,000 value filter. Every permit returned `ValueCAD = 1`.
+After I switched to `pdftotext`, the collector parsed twenty records. None passed the $500,000 filter; every permit returned `ValueCAD = 1`.
 
-I thought I misconfigured the threshold. I lowered it to $100,000, then $1. Still zero — but now I saw permits with values of $1.
+I suspected a misconfigured threshold. I lowered it to $100,000, then to $1. The results remained zero, though I saw permits with values of $1.
 
-Verbose logging showed every record had `ValueCAD = 1` or `ValueCAD = 0`. The parser was wrong.
+Verbose logging showed that every record had `ValueCAD = 1` or `ValueCAD = 0`. The parser was failing.
 
 I dumped the raw `pdftotext` output and found this:
 
@@ -85,20 +85,20 @@ Studio Senbel Architecture Inc
 Safara Cladding Inc (416)875-1770
 ```
 
-The bare `1` between the date and the dollar amount is a permit count row. The original parser assigned fields by position:
+The `1` between the date and the dollar amount is a permit count row. The original parser assigned fields by position:
 
 - Line 0: work proposed
 - Line 1: status
 - Line 2: issue date
 - **Line 3: value** ← the `1` sits
 
-The `$300,000.00` landed in the `Address` field. The contractor's phone number ended up in an unknown slot. Everything shifted, and `ValueCAD` became `1`.
+The `$300,000.00` landed in the `Address` field, and the phone number moved to an unknown slot. Everything shifted; `ValueCAD` became `1`.
 
 ---
 
 ## The fix: content-aware parsing
 
-I stopped trusting line position and started trusting line content:
+I stopped trusting position and started trusting content:
 
 ```go
 // It's a date
@@ -125,15 +125,15 @@ if intRe.MatchString(line) {
 // Everything else: sequential fill
 ```
 
-This handles the clean test fixture and the `pdftotext` output. If a line looks like a dollar amount, it becomes `ValueCAD`. If it looks like a date, it goes to `IssueDate`. The bare `1` is skipped.
+This handles both the test fixture and the `pdftotext` output. If a line resembles a dollar amount, it becomes `ValueCAD`. If it resembles a date, it becomes `IssueDate`. The `1` is skipped.
 
-After the fix, 3 of 20 permits passed the filter with correct construction values.
+After the fix, three of twenty permits passed the filter.
 
 ---
 
 ## 32 unit tests
 
-I wrote tests for every pure function. The parser is a pure function: give it lines, get a record. It should have test cases:
+I wrote tests for every pure function. The parser is such a function: it receives lines and returns a record.
 
 ```go
 {
@@ -143,6 +143,6 @@ I wrote tests for every pure function. The parser is a pure function: give it li
 },
 ```
 
-I would have caught the bug immediately if I had used real `pdftotext` output in the test. I used clean data instead. Lesson noted.
+I would have caught the bug immediately with real `pdftotext` output. I used clean data instead. Lesson noted.
 
-Next: why I'm asking an AI to read a building permit.
+Next: why I ask an AI to read a building permit.

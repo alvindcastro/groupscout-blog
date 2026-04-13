@@ -5,18 +5,18 @@ pubDate: "2026-04-05"
 draft: false
 ---
 
-A building permit lists a $1.2M warehouse build at 12500 Vulcan Way by Safara Cladding Inc for ABC Developments Ltd.
+A building permit lists a $1.2M warehouse build at 12500 Vulcan Way by Safara Cladding Inc.
 
 It omits:
 
-- If "Safara Cladding" is the GC or a sub.
-- The required crew size.
-- If the crew is local or from out of province.
-- If the lead warrants a call.
+- Whether Safara Cladding is the contractor or a subcontractor.
+- The crew size.
+- Whether the crew is local or from out of province.
+- Whether the lead warrants a call.
 
-An industry expert infers these from project type, value, and location. Claude does the same. It adds context so a human can make a better call.
+An industry expert infers these details from the project type, value, and location; Claude does the same. It adds context to help a human decide.
 
-This isn’t about learning how to use an LLM — it’s about getting better at where it helps, where it doesn’t, and how much structure it actually needs to be useful.
+This is about determining where an LLM helps, where it does not, and how much structure it requires.
 
 ---
 
@@ -30,7 +30,7 @@ Evaluate building permit records to identify projects that will generate
 demand for construction crew lodging.
 ```
 
-The permit data — folder number, address, work type, construction value, applicant name, contractor name, issue date — goes into the user message. Claude returns a JSON object:
+The permit data—folder number, address, type, value, applicant, contractor, and date—goes into the message. Claude returns a JSON object:
 
 ```json
 {
@@ -46,21 +46,21 @@ The permit data — folder number, address, work type, construction value, appli
 }
 ```
 
-Priority score, estimated crew, outreach timing, GC name, and a plain-English reason — everything a sales manager needs to decide on a call.
+Priority, crew size, timing, contractor, and reason—these details help a sales manager decide whether to call.
 
 ---
 
 ## Why Haiku and not Sonnet
 
-Claude Haiku is faster and 5x cheaper than Sonnet. For structured extraction from short text, Haiku is the right choice. It reads a permit and fills the fields.
+Claude Haiku is faster and cheaper than Sonnet. For structured extraction, Haiku is the right choice; it reads a permit and fills the fields.
 
-Permit enrichment costs roughly $0.001 per permit. The pipeline processes 5–10 permits weekly, totaling a few cents monthly.
+Enrichment costs $0.001 per permit. The pipeline processes five to ten permits weekly, totaling a few cents monthly.
 
 ---
 
-## An important design choice: preserve the raw data
+## Preserve raw data
 
-Claude _guesses_ the GC. I preserve the raw permit's `applicant` and `contractor` fields alongside Claude's inference.
+Claude guesses the contractor. I preserve the raw `applicant` and `contractor` fields alongside Claude's inference.
 
 Why does this matter? Take this example:
 
@@ -68,17 +68,17 @@ Why does this matter? Take this example:
 - **Raw contractor:** `Safara Cladding Inc (416)875-1770`
 - **Claude's GC inference:** `Safara Cladding Inc`
 
-That phone number — `(416)875-1770` — is in the raw contractor field. If I only kept Claude's `general_contractor`, I'd lose the phone number. By preserving both, the sales manager has the raw contact info and Claude's interpretation of who's actually running the project.
+The phone number is in the raw contractor field. If I kept only the inference, I would lose the number. By preserving both, the sales manager has the raw contact information and the AI interpretation.
 
-The raw data never gets thrown away. Claude adds context on top of it — it doesn't replace it.
+I never discard raw data. Claude adds context but does not replace the original information.
 
 ---
 
 ## Dedup before enrichment
 
-Enrichment follows the dedup check. The pipeline checks if a permit's hash exists before calling Claude.
+Enrichment follows the deduplication check. The pipeline checks for a permit's hash before calling Claude.
 
-Claude calls cost money. Re-enriching the same permits would waste funds and generate duplicate leads and Slack notifications. Dedup prevents this.
+Claude calls cost money. Re-enriching permits would waste funds and generate duplicates. Deduplication prevents this.
 
 The rule: if seen, skip. If new, enrich, store, and alert.
 

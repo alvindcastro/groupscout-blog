@@ -6,13 +6,13 @@ tags: ["ollama", "llm", "docker", "infrastructure"]
 draft: true
 ---
 
-Group Scout started as a cloud-first pipeline. Every building permit was sent to Claude Haiku for scoring. At $0.001 per call, it was cheap—but as the pipeline grew to thousands of permits across multiple cities, I wanted to move the inference local.
+Group Scout began as a cloud-first pipeline. Every building permit went to Claude Haiku for scoring. At $0.001 per call, it was cheap; however, as the pipeline grew to thousands of permits, I moved the inference to a local system.
 
-This post covers how I integrated Ollama into the Group Scout stack as a sidecar container.
+This post explains how I integrated Ollama as a sidecar container.
 
 ## The Sidecar Architecture
 
-Ollama runs in the same Docker Compose stack as the main Go binary. It exposes an HTTP API that the `enrichment` layer calls.
+Ollama runs in the same Docker Compose stack as the Go binary. It exposes an HTTP API for the enrichment layer.
 
 ```
 ┌─────────────────────────────────────────────┐
@@ -27,11 +27,11 @@ Ollama runs in the same Docker Compose stack as the main Go binary. It exposes a
 └─────────────────────────────────────────────┘
 ```
 
-By using a named Docker volume (`ollama_data`), the LLM models (Mistral, Llama 3.1) persist across container restarts. This is critical because Llama 3.1 8B is a ~5GB download.
+A named Docker volume ensures that models persist across restarts. This is critical because Llama 3.1 8B is a five-gigabyte download.
 
 ## Docker Configuration
 
-I added the `ollama` service with specific resource limits to prevent it from starving the main Go app during heavy inference tasks.
+I added the `ollama` service with resource limits to prevent it from starving the Go application.
 
 ```yaml
 services:
@@ -54,9 +54,9 @@ services:
 
 ## GPU Passthrough in WSL2
 
-Since I'm running this on a Windows 11 machine with an NVIDIA RTX 4060 Ti, CPU-only inference was too slow (8-15s per call). Enabling GPU passthrough via the NVIDIA Container Toolkit dropped inference time to ~1.5s.
+On a Windows 11 machine with an NVIDIA RTX 4060 Ti, CPU-only inference was slow. Enabling GPU passthrough dropped inference time to 1.5 seconds.
 
-The configuration in `deploy/docker-compose.yml` uses the `deploy.resources.reservations` block:
+The configuration uses the `reservations` block:
 
 ```yaml
 deploy:
@@ -70,4 +70,4 @@ deploy:
 
 ## Why This Matters
 
-Moving to a local LLM removes the per-call cost and the latency of hitting an external API. It also allows the pipeline to run entirely offline, which fits the "home server" ethos of the project. Group Scout now uses the `OLLAMA_ENDPOINT` environment variable to toggle between local development and production-grade local inference.
+Moving to a local LLM removes per-call costs and API latency. It also allows the pipeline to run offline, fitting the 'home server' ethos. Group Scout uses an environment variable to toggle between local development and local inference.
