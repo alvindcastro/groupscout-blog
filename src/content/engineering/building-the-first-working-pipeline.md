@@ -1,8 +1,8 @@
 ---
-title: 'Building the First Working Pipeline'
-description: 'How the collector interface, deduplication, Claude enrichment, and Slack notification came together into a pipeline that could actually find a lead.'
-pubDate: '2026-04-12'
-tags: ['go', 'architecture', 'claude', 'slack', 'sqlite']
+title: "Building the First Working Pipeline"
+description: "How the collector interface, deduplication, Claude enrichment, and Slack notification came together into a pipeline that could actually find a lead."
+pubDate: "2026-04-12"
+tags: ["go", "architecture", "claude", "slack", "sqlite"]
 ---
 
 The goal was simple: collect a building permit, score it, and send a Slack message. Nothing else. No multi-source pipeline, no production infrastructure. Just one collector, one enrichment call, one notification.

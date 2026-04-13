@@ -1,7 +1,7 @@
 ---
 title: "Film crews as a signal"
 description: "Construction crews started it. Film and TV productions are an even stronger signal."
-pubDate: '2026-04-11'
+pubDate: "2026-04-11"
 draft: true
 ---
 
@@ -22,6 +22,7 @@ Large crews. Fixed schedules. Out‑of‑town specialists. And a real need for n
 A feature film or TV series can bring **80 to 300+ crew**. Department heads and specialists often fly in and need to stay near the set.
 
 To a hotel sales manager, this resembles construction:
+
 - large groups
 - defined timelines
 - limited flexibility on location
@@ -41,6 +42,7 @@ A Salesforce Visualforce endpoint returns fully rendered HTML to a plain HTTP re
 ## Fitting into the pipeline
 
 Each production maps to a `RawProject` and flows through the same steps:
+
 - dedup
 - LLM enrichment
 - scoring
@@ -52,7 +54,7 @@ That’s the point.
 
 ---
 
-Permits tell you *what might get built*.  
-Film and TV tell you *who is mobilizing*.
+Permits tell you _what might get built_.  
+Film and TV tell you _who is mobilizing_.
 
 Different signals, same system.

@@ -7,7 +7,7 @@
 
 ## Overview
 
-Add a second blog section to the existing groupscout-blog Astro site, focused on engineering. The build-log blog at `/blog/` documents the product journey. The engineering blog at `/engineering/` documents technical decisions, system architecture, and implementation details — drawn from the `backend-docs/` directory and written to the standards of Strunk's *Elements of Style*.
+Add a second blog section to the existing groupscout-blog Astro site, focused on engineering. The build-log blog at `/blog/` documents the product journey. The engineering blog at `/engineering/` documents technical decisions, system architecture, and implementation details — drawn from the `backend-docs/` directory and written to the standards of Strunk's _Elements of Style_.
 
 ---
 
@@ -44,9 +44,9 @@ The `source` field records which backend-doc the post was generated from. It app
 
 ### Routing
 
-| Path | File | Purpose |
-|---|---|---|
-| `/engineering/` | `src/pages/engineering/index.astro` | Post list |
+| Path                  | File                                    | Purpose         |
+| --------------------- | --------------------------------------- | --------------- |
+| `/engineering/`       | `src/pages/engineering/index.astro`     | Post list       |
 | `/engineering/[slug]` | `src/pages/engineering/[...slug].astro` | Individual post |
 
 ---
@@ -55,15 +55,15 @@ The `source` field records which backend-doc the post was generated from. It app
 
 The engineering section shares the zinc base palette and dark/light mode system of the current blog, but is visually distinct:
 
-| Property | Build-log blog | Engineering blog |
-|---|---|---|
-| Accent color | zinc | indigo (`indigo-500` light / `indigo-400` dark) |
-| Body font size | `text-base` | `text-sm` |
-| Line height | relaxed | normal (tighter) |
-| Post list layout | Card grid (3-col) | Single-column list with `<hr>` separators |
-| Code blocks | Inherits theme | Dark background in both light and dark mode |
-| Index hero | Full hero section | One-line description, list immediately below |
-| Nav active indicator | zinc underline | indigo underline |
+| Property             | Build-log blog    | Engineering blog                                |
+| -------------------- | ----------------- | ----------------------------------------------- |
+| Accent color         | zinc              | indigo (`indigo-500` light / `indigo-400` dark) |
+| Body font size       | `text-base`       | `text-sm`                                       |
+| Line height          | relaxed           | normal (tighter)                                |
+| Post list layout     | Card grid (3-col) | Single-column list with `<hr>` separators       |
+| Code blocks          | Inherits theme    | Dark background in both light and dark mode     |
+| Index hero           | Full hero section | One-line description, list immediately below    |
+| Nav active indicator | zinc underline    | indigo underline                                |
 
 The `EngineeringPost.astro` layout wraps the existing `BaseLayout.astro` (for nav, footer, theme toggle) and applies the indigo accent and tighter typography via scoped styles or Tailwind classes.
 

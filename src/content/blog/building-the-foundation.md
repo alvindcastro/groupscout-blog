@@ -1,7 +1,7 @@
 ---
-title: 'Build the foundation — store first, think later'
-description: 'Build the database layer before scraping code. The deduplication hash is the most important part of the pipeline.'
-pubDate: '2026-04-04'
+title: "Build the foundation — store first, think later"
+description: "Build the database layer before scraping code. The deduplication hash is the most important part of the pipeline."
+pubDate: "2026-04-04"
 draft: false
 ---
 
@@ -49,7 +49,7 @@ This matters for several reasons:
 
 ## Store raw data before enriching
 
-The pipeline writes the raw permit to `raw_projects` *before* calling Claude.
+The pipeline writes the raw permit to `raw_projects` _before_ calling Claude.
 
 API calls fail. Claude's API might be down, credits might be empty, or the JSON might not parse. If enrichment fails, I still have the raw permit data.
 

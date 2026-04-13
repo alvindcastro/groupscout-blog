@@ -12,29 +12,30 @@
 
 ## File Map
 
-| Action | File | Responsibility |
-|---|---|---|
-| Modify | `src/content/config.ts` | Add `engineering` collection schema |
-| Modify | `src/components/Navigation.astro` | Add Engineering nav item; fix active-link detection |
-| Create | `src/layouts/EngineeringPost.astro` | Post layout: indigo accent, tight prose, source attribution |
-| Create | `src/pages/engineering/index.astro` | Dense single-column post list |
-| Create | `src/pages/engineering/[...slug].astro` | Individual post route with prev/next nav |
-| Create | `src/content/engineering/` | Directory for engineering posts (empty to start) |
+| Action | File                                    | Responsibility                                              |
+| ------ | --------------------------------------- | ----------------------------------------------------------- |
+| Modify | `src/content/config.ts`                 | Add `engineering` collection schema                         |
+| Modify | `src/components/Navigation.astro`       | Add Engineering nav item; fix active-link detection         |
+| Create | `src/layouts/EngineeringPost.astro`     | Post layout: indigo accent, tight prose, source attribution |
+| Create | `src/pages/engineering/index.astro`     | Dense single-column post list                               |
+| Create | `src/pages/engineering/[...slug].astro` | Individual post route with prev/next nav                    |
+| Create | `src/content/engineering/`              | Directory for engineering posts (empty to start)            |
 
 ---
 
 ## Task 1: Add engineering collection to content config
 
 **Files:**
+
 - Modify: `src/content/config.ts`
 
 - [ ] **Step 1: Open `src/content/config.ts` and replace its contents**
 
 ```typescript
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, z } from "astro:content";
 
 const blogCollection = defineCollection({
-  type: 'content',
+  type: "content",
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -48,7 +49,7 @@ const blogCollection = defineCollection({
 });
 
 const engineeringCollection = defineCollection({
-  type: 'content',
+  type: "content",
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -62,8 +63,8 @@ const engineeringCollection = defineCollection({
 });
 
 export const collections = {
-  'blog': blogCollection,
-  'engineering': engineeringCollection,
+  blog: blogCollection,
+  engineering: engineeringCollection,
 };
 ```
 
@@ -80,9 +81,11 @@ src/content/engineering/.gitkeep
 - [ ] **Step 3: Verify TypeScript is happy**
 
 Run:
+
 ```bash
 npx astro check
 ```
+
 Expected: no errors related to collections.
 
 - [ ] **Step 4: Commit**
@@ -97,6 +100,7 @@ git commit -m "feat(content): add engineering collection schema"
 ## Task 2: Update navigation
 
 **Files:**
+
 - Modify: `src/components/Navigation.astro`
 
 - [ ] **Step 1: Update `navItems` array and active-link detection**
@@ -128,15 +132,18 @@ const currentPath = pathname.slice(1); // remove leading "/"
 The current code has `isActive` computed inline in two `.map()` calls. Update both instances.
 
 Find this pattern (appears twice):
+
 ```js
-const isActive = currentPath === (item.href === '/' ? '' : item.href.slice(1));
+const isActive = currentPath === (item.href === "/" ? "" : item.href.slice(1));
 ```
 
 Replace both occurrences with:
+
 ```js
-const isActive = item.href === BASE_URL
-  ? currentPath === ''
-  : currentPath.startsWith(item.href.slice(1));
+const isActive =
+  item.href === BASE_URL
+    ? currentPath === ""
+    : currentPath.startsWith(item.href.slice(1));
 ```
 
 This makes "Engineering" stay highlighted when reading any engineering post, and likewise for Blog and Tags.
@@ -144,6 +151,7 @@ This makes "Engineering" stay highlighted when reading any engineering post, and
 - [ ] **Step 3: Start dev server and verify**
 
 Run:
+
 ```bash
 npm run dev
 ```
@@ -162,6 +170,7 @@ git commit -m "feat(nav): add Engineering link and fix startsWith active detecti
 ## Task 3: Create EngineeringPost layout
 
 **Files:**
+
 - Create: `src/layouts/EngineeringPost.astro`
 
 - [ ] **Step 1: Create the file with this content**
@@ -299,6 +308,7 @@ git commit -m "feat(layout): add EngineeringPost layout with indigo accent"
 ## Task 4: Create engineering index page
 
 **Files:**
+
 - Create: `src/pages/engineering/index.astro`
 
 - [ ] **Step 1: Create the file**
@@ -384,6 +394,7 @@ git commit -m "feat(pages): add /engineering index page"
 ## Task 5: Create engineering slug page
 
 **Files:**
+
 - Create: `src/pages/engineering/[...slug].astro`
 
 - [ ] **Step 1: Create the file**
@@ -472,17 +483,18 @@ git commit -m "feat(pages): add /engineering/[slug] post route"
 ## Task 6: Add a sample post and verify full build
 
 **Files:**
+
 - Create: `src/content/engineering/groupscout-architecture.md`
 
 - [ ] **Step 1: Create a minimal sample post to exercise the collection**
 
 ```markdown
 ---
-title: 'System Architecture Overview'
-description: 'How Group Scout is structured: collector, enrichment, storage, and notification layers.'
-pubDate: '2026-04-12'
-tags: ['architecture', 'go', 'system-design']
-source: 'ARCHITECTURE.md'
+title: "System Architecture Overview"
+description: "How Group Scout is structured: collector, enrichment, storage, and notification layers."
+pubDate: "2026-04-12"
+tags: ["architecture", "go", "system-design"]
+source: "ARCHITECTURE.md"
 ---
 
 Group Scout is a Go backend structured in four layers. Each layer has one job.
@@ -517,6 +529,7 @@ npm run build
 ```
 
 Expected output ends with something like:
+
 ```
  generating static routes
   ├─ /engineering/ (+Xms)
@@ -534,6 +547,7 @@ npm run dev
 ```
 
 Check:
+
 - `http://localhost:4321/engineering/` — shows the post in the dense list
 - `http://localhost:4321/engineering/groupscout-architecture/` — renders the post with indigo-accented title, source attribution badge, dark code blocks
 - Nav "Engineering" link highlights as active on both pages

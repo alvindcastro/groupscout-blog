@@ -1,5 +1,10 @@
-### Post 2: The "Technical Reality" Post (Focus on the PDF Struggle)
-*Best for: Showing the "messy" side of building and why simple solutions (like CLI tools) often win over fancy libraries.*
+---
+title: "Technical Reality: The PDF Struggle"
+description: "Why battle-tested CLI tools often beat fancy modern libraries when parsing municipal data."
+pubDate: "2026-04-13"
+draft: true
+tags: ["pdf", "parsing", "go", "cli", "groupscout"]
+---
 
 I thought parsing municipal building permits would be the easy part.
 

@@ -4,3 +4,4 @@ you check a folder with MD files in /backend-docs
 you check the current content in MD files in src/content/blog
 you will create new blog content with the same tone as the current content
 split the content to logical MD files
+linkedin posts are for linkedin only and should not be included in the blog feed

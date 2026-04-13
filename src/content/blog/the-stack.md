@@ -1,22 +1,22 @@
 ---
-title: 'The stack — Go, Postgres, and pgvector'
-description: 'The technology behind Group Scout and why these choices fit a background data pipeline.'
-pubDate: '2026-04-12'
+title: "The stack — Go, Postgres, and pgvector"
+description: "The technology behind Group Scout and why these choices fit a background data pipeline."
+pubDate: "2026-04-12"
 draft: true
 ---
 
-I want to explain my technology choices. The *why* is more interesting than the stack itself.
+I want to explain my technology choices. The _why_ is more interesting than the stack itself.
 
 Here's what Group Scout is built on:
 
-| Layer | Technology | Why |
-|---|---|---|
-| Language | Go | Background pipelines are Go's natural habitat |
-| Database | PostgreSQL + pgvector | Production stability, UUIDs, and vector support for RAG |
-| AI enrichment | Claude Haiku (Anthropic) | ~$0.001 per permit, fast, great at structured JSON |
-| Infrastructure | Docker Compose | Reproducible environments for the app, DB, and n8n |
-| Notifications | Slack incoming webhook | No app setup, Block Kit makes rich cards easy |
-| Monitoring | Sentry + structured logging | Production-grade error tracking and observability |
+| Layer          | Technology                  | Why                                                     |
+| -------------- | --------------------------- | ------------------------------------------------------- |
+| Language       | Go                          | Background pipelines are Go's natural habitat           |
+| Database       | PostgreSQL + pgvector       | Production stability, UUIDs, and vector support for RAG |
+| AI enrichment  | Claude Haiku (Anthropic)    | ~$0.001 per permit, fast, great at structured JSON      |
+| Infrastructure | Docker Compose              | Reproducible environments for the app, DB, and n8n      |
+| Notifications  | Slack incoming webhook      | No app setup, Block Kit makes rich cards easy           |
+| Monitoring     | Sentry + structured logging | Production-grade error tracking and observability       |
 
 No framework. No ORM. No generated code. Just `database/sql`, `net/http`, and the standard library.
 
@@ -42,6 +42,7 @@ Every data source implements this interface. Building permits use one implementa
 ## Why PostgreSQL (and why pgvector)
 
 I started with SQLite, which was perfect for the first few weeks. As the system grew, I needed more. I moved to PostgreSQL (using `pgvector/pgvector:pg17`) for:
+
 1. **Native UUIDs:** No string-to-ID mapping.
 2. **JSONB support:** Indexing and querying raw project data.
 3. **pgvector:** Storing lead embeddings enables similarity searches to find "leads like this one" or match against historical "won" business.
@@ -59,6 +60,7 @@ Docker Compose handles orchestration for the Group Scout app, Postgres, n8n, Pro
 ## Why Claude Haiku for enrichment
 
 A building permit omits:
+
 - Crew type (local or fly-in)
 - Crew size
 - Project duration

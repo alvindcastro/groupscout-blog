@@ -1,7 +1,7 @@
 ---
 title: "The problem — why you can't just wait for the phone to ring"
 description: "Construction crew lodging is valuable but hard to find. Here's why."
-pubDate: '2026-03-29'
+pubDate: "2026-03-29"
 draft: false
 ---
 

@@ -1,13 +1,13 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
-import react from '@astrojs/react';
-import sitemap from '@astrojs/sitemap';
+import { defineConfig } from "astro/config";
+import tailwind from "@astrojs/tailwind";
+import react from "@astrojs/react";
+import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://alvindcastro.github.io',
-  base: '/groupscout-blog/',
-  trailingSlash: 'always',
+  site: "https://alvindcastro.github.io",
+  base: "/groupscout-blog/",
+  trailingSlash: "always",
   integrations: [tailwind(), react(), sitemap()],
 });

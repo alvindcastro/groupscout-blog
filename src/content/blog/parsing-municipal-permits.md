@@ -1,7 +1,7 @@
 ---
-title: 'Parsing municipal permits — the first signal'
+title: "Parsing municipal permits — the first signal"
 description: "How I turned messy city PDF reports into structured leads and why a modular approach scales."
-pubDate: '2026-04-11'
+pubDate: "2026-04-11"
 draft: false
 ---
 
@@ -63,6 +63,7 @@ Generalizing permit parsing made Group Scout feel like a real product.
 When the first Monday Slack message arrived with an automated lead — a permit for a warehouse renovation — it validated the concept.
 
 It proved:
+
 1. The data exists.
 2. The stack (Go, SQLite, and `pdftotext`) handles it.
 3. The modular collector model scales across regions.

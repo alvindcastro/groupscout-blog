@@ -1,7 +1,7 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, z } from "astro:content";
 
 const blogCollection = defineCollection({
-  type: 'content',
+  type: "content",
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -15,7 +15,7 @@ const blogCollection = defineCollection({
 });
 
 const engineeringCollection = defineCollection({
-  type: 'content',
+  type: "content",
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -28,7 +28,20 @@ const engineeringCollection = defineCollection({
   }),
 });
 
+// LinkedIn collection - external content only, not displayed in the blog feed
+const linkedinCollection = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    pubDate: z.coerce.date(),
+    draft: z.boolean().optional(),
+    tags: z.array(z.string()).optional(),
+  }),
+});
+
 export const collections = {
-  'blog': blogCollection,
-  'engineering': engineeringCollection,
+  blog: blogCollection,
+  engineering: engineeringCollection,
+  linkedin: linkedinCollection,
 };

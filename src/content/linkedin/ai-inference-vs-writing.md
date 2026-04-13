@@ -1,4 +1,10 @@
-### LLMs + pgvector — A pragmatic approach to AI-enriched leads
+---
+title: "AI Inference vs. AI Writing: A Pragmatic Approach"
+description: "Why we use LLMs as an assistive layer on top of a deterministic data pipeline."
+pubDate: "2026-04-13"
+draft: true
+tags: ["ai", "llm", "pgvector", "data-strategy", "groupscout"]
+---
 
 For Group Scout, the "AI" isn't the whole product. It’s an assistive layer on top of a deterministic pipeline.
 

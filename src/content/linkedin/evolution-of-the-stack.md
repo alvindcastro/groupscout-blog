@@ -1,5 +1,10 @@
-### Post 5: The "Evolution" Post (Focus on the Stack & Scaling)
-*Best for: Talking about the transition from a "weekend hack" to something more robust.*
+---
+title: "The Evolution of the Stack: Growing Up from Weekend Hack"
+description: "Why moving from SQLite to Postgres + pgvector was a rite of passage for GroupScout."
+pubDate: "2026-04-13"
+draft: true
+tags: ["tech-stack", "go", "postgres", "scaling", "groupscout"]
+---
 
 Moving from SQLite to Postgres is a rite of passage for side projects.
 
@@ -8,6 +13,7 @@ Group Scout started as a single Go binary and a local SQLite file. It was perfec
 But as I started adding `pgvector` for similarity searches (to find "leads like this one") and wiring in `n8n` for workflow automation, the infrastructure had to grow up.
 
 The current stack:
+
 - **Go**: The engine (concurrent, type-safe, and perfect for pipelines).
 - **Postgres + pgvector**: For production-grade storage and future RAG capabilities.
 - **n8n**: The "bridge" that handles scheduling and manual overrides without cluttering the Go code.

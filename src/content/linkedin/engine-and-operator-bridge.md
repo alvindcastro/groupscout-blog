@@ -1,6 +1,12 @@
-### The "Engine and Operator" — Why I separated code from workflow
+---
+title: "The Engine and the Operator: Why I Separated Code from Workflow"
+description: "How a Go backend and n8n work together to build a reliable and flexible data pipeline."
+pubDate: "2026-04-13"
+draft: true
+tags: ["architecture", "go", "n8n", "workflow", "groupscout"]
+---
 
-When building a data pipeline like Group Scout, it's tempting to write code for *everything*. A custom scheduler, a UI for manual overrides, a Gmail integration...
+When building a data pipeline like Group Scout, it's tempting to write code for _everything_. A custom scheduler, a UI for manual overrides, a Gmail integration...
 
 But as a solo dev, that's a trap. Every line of code I write is a line I have to maintain.
 

@@ -1,7 +1,7 @@
 ---
-title: 'Cracking the PDF — no API, no problem (mostly)'
-description: 'Municipalities often publish building permits as weekly PDFs with no API. A pure Go PDF library returned zero rows. Then came the parser bug that looked like a config bug. Here is how all of it got fixed.'
-pubDate: '2026-04-05'
+title: "Cracking the PDF — no API, no problem (mostly)"
+description: "Municipalities often publish building permits as weekly PDFs with no API. A pure Go PDF library returned zero rows. Then came the parser bug that looked like a config bug. Here is how all of it got fixed."
+pubDate: "2026-04-05"
 draft: false
 ---
 
@@ -44,6 +44,7 @@ The library returned zero rows. No parsing error, no panic, no warning — just 
 These PDFs use a non-standard font encoding that the library cannot decode. It cannot read the text. This common PDF problem has no clean pure-Go fix.
 
 I had two options:
+
 1. Find another pure Go library and hope it handles the encoding.
 2. Use `pdftotext`.
 

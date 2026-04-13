@@ -1,7 +1,7 @@
 ---
 title: "Where it stands — Production-ready and scaling"
-description: 'The pipeline is a production-grade system with multiple sources, structured monitoring, and a Postgres backend.'
-pubDate: '2026-04-12'
+description: "The pipeline is a production-grade system with multiple sources, structured monitoring, and a Postgres backend."
+pubDate: "2026-04-12"
 draft: true
 ---
 
@@ -14,6 +14,7 @@ go run ./cmd/server/ --run-once
 ```
 
 What happens:
+
 1. Scrapes the weekly reports page for the latest PDF URL.
 2. Downloads the PDF, extracts text with `pdftotext`, and parses permit records.
 3. Filters commercial sub-types above the value threshold.
@@ -44,16 +45,19 @@ On a recent run, 3 of 20 permits passed the filter. All three hit the enrichment
 ## What's next
 
 ### Phase 16 — LLM Provider Abstraction
+
 - Abstract LLM calls into a provider-agnostic interface
 - Support for OpenAI, Groq, and local Ollama (for testing and cost-saving)
 - Fallback logic: if Claude is down or out of credits, automatically retry with GPT-4o-mini
 
 ### Phase 17 — Airport Disruption Alert System
+
 - A dedicated service (`alertd`) to monitor airports for flight cancellations and weather alerts
 - Real-time Slack alerts for the hotel operations team
 - Integration with local hotel inventory to include "rooms available"
 
 ### Phase 18 — Contact Enrichment
+
 - Auto-surface decision-maker contacts (project managers, coordinators) using Hunter.io
 - Attach contact details directly to the lead in Slack
 

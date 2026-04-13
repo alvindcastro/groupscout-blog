@@ -1,5 +1,10 @@
-### Post 1: The "Origins" Post (Current)
-*Best for: Introducing the project and setting the stage.*
+---
+title: "The Origins of GroupScout: Solving a Real-World Problem"
+description: "How listening to my wife's work challenges led to a Go-based lead generation tool."
+pubDate: "2026-04-13"
+draft: true
+tags: ["origins", "side-project", "go", "groupscout"]
+---
 
 I’ve always enjoyed side projects — mostly because they’re how I explore ideas and learn.
 

@@ -1,11 +1,16 @@
-### Post 3: The "Pragmatic AI" Post (Focus on Claude Haiku & Scoring)
-*Best for: Discussing how to use LLMs effectively without over-engineering or over-spending.*
+---
+title: "Pragmatic AI: Scoring Leads with Claude Haiku"
+description: "How to use LLMs effectively for data inference without over-engineering."
+pubDate: "2026-04-13"
+draft: true
+tags: ["ai", "claude", "lead-scoring", "haiku", "groupscout"]
+---
 
 A building permit tells you a $1.2M warehouse is being built.
 
 It doesn’t tell you if you should call the contractor.
 
-That’s the gap I’m using Claude to bridge for Group Scout. I don’t need an LLM to "write" things; I need it to *infer* things that a human sales manager would.
+That’s the gap I’m using Claude to bridge for Group Scout. I don’t need an LLM to "write" things; I need it to _infer_ things that a human sales manager would.
 
 - Is this a local crew or out-of-town?
 - How many workers will this project actually need?

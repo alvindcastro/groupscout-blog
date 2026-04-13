@@ -1,11 +1,11 @@
 ---
-title: 'The n8n bridge — connecting code to workflow'
+title: "The n8n bridge — connecting code to workflow"
 description: "Using n8n to handle the 'human' parts of the pipeline keeps the Go backend focused on its core."
-pubDate: '2026-04-06'
+pubDate: "2026-04-06"
 draft: true
 ---
 
-I avoid writing code for *everything*. Developers often want to write a custom scheduler, a web UI, or a Gmail integration from scratch. But my time is limited, and those features aren't the "core."
+I avoid writing code for _everything_. Developers often want to write a custom scheduler, a web UI, or a Gmail integration from scratch. But my time is limited, and those features aren't the "core."
 
 Group Scout's core is **signal detection and enrichment**. The "workflow" — when to run, manual overrides, and pushing data to a CRM — is where n8n helps.
 
@@ -26,13 +26,13 @@ Instead of a UI for adding leads from news articles, I use an n8n webhook. If my
 The architecture looks like this:
 
 1.  **Group Scout (Go)**: The "engine." It scrapes permit sites, talks to Claude, and stores leads in PostgreSQL.
-2.  **n8n**: The "operator." It decides *when* the engine runs and acts as a gateway for external data.
+2.  **n8n**: The "operator." It decides _when_ the engine runs and acts as a gateway for external data.
 
 I've exposed a few key endpoints to n8n:
 
--   `POST /run`: Triggers the full collection and enrichment pipeline.
--   `POST /n8n/webhook`: Accepts structured JSON from n8n to create a lead from an external source (like an RSS feed or a Google Sheet).
--   `POST /digest`: Triggers the weekly summary notification.
+- `POST /run`: Triggers the full collection and enrichment pipeline.
+- `POST /n8n/webhook`: Accepts structured JSON from n8n to create a lead from an external source (like an RSS feed or a Google Sheet).
+- `POST /digest`: Triggers the weekly summary notification.
 
 ---
 

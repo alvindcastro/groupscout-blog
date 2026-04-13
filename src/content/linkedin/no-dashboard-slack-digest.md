@@ -1,5 +1,10 @@
-### Post 4: The "Design Philosophy" Post (Focus on the Slack Digest)
-*Best for: Challenging the idea that every project needs a "dashboard" and advocating for meeting users where they are.*
+---
+title: "No Dashboard, No Problem: Meeting Users Where They Are"
+description: "Why a Slack digest is often better than another custom web application."
+pubDate: "2026-04-13"
+draft: true
+tags: ["product-design", "slack", "ux", "groupscout"]
+---
 
 Group Scout has no dashboard. No login. No UI.
 

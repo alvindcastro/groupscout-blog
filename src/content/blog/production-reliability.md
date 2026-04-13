@@ -1,11 +1,11 @@
 ---
 title: "Production reliability: Sentry, logging, and health checks"
 description: "Transitioning from a local script to a production-grade system with error logging and health monitoring."
-pubDate: '2026-04-14'
+pubDate: "2026-04-14"
 draft: true
 ---
 
-A scheduled data pipeline is only as good as your visibility into its failures. It *will* fail: external sites change, PDFs corrupt, and API credits expire.
+A scheduled data pipeline is only as good as your visibility into its failures. It _will_ fail: external sites change, PDFs corrupt, and API credits expire.
 
 I shifted Group Scout's focus to "system reliability."
 
@@ -20,10 +20,16 @@ I replaced standard `fmt.Println` statements. They work for debugging but are ha
 I moved to `log/slog` (added in Go 1.21). Every log message is now JSON:
 
 ```json
-{"time":"2026-04-12T14:30:05Z","level":"INFO","msg":"collected projects","source":"city_permits","count":20}
+{
+  "time": "2026-04-12T14:30:05Z",
+  "level": "INFO",
+  "msg": "collected projects",
+  "source": "city_permits",
+  "count": 20
+}
 ```
 
-I can pipe these logs into **Grafana Loki** and run queries: *"How many permits did I collect last week?"* or *"Show all errors from the Claude enrichment service."*
+I can pipe these logs into **Grafana Loki** and run queries: _"How many permits did I collect last week?"_ or _"Show all errors from the Claude enrichment service."_
 
 ---
 
@@ -42,6 +48,7 @@ Initializing Sentry at the start of `main()` gives coverage across the app. I kn
 A Docker container can "run" while the app inside is deadlocked or disconnected.
 
 I added a `/health` endpoint that:
+
 - **Pings the Database:** Verifies the Postgres connection.
 - **Checks Env Vars:** Ensures critical configuration (like API keys) is present.
 - **Validates Scraper State:** Confirms scrapers are registered and ready.
@@ -53,6 +60,7 @@ Docker and n8n use this endpoint to verify the system is healthy before triggeri
 ## 4. Pipeline Metrics
 
 I log basic metrics for every run:
+
 - Time to complete
 - Projects collected vs. leads created
 - Priority score distribution

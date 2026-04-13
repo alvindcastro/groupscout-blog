@@ -1,13 +1,14 @@
 ---
-title: 'Claude scores hotel leads'
+title: "Claude scores hotel leads"
 description: "A building permit identifies what was built, but Claude decides whether to call."
-pubDate: '2026-04-05'
+pubDate: "2026-04-05"
 draft: false
 ---
 
 A building permit lists a $1.2M warehouse build at 12500 Vulcan Way by Safara Cladding Inc for ABC Developments Ltd.
 
 It omits:
+
 - If "Safara Cladding" is the GC or a sub.
 - The required crew size.
 - If the crew is local or from out of province.
@@ -59,7 +60,7 @@ Permit enrichment costs roughly $0.001 per permit. The pipeline processes 5–10
 
 ## An important design choice: preserve the raw data
 
-Claude *guesses* the GC. I preserve the raw permit's `applicant` and `contractor` fields alongside Claude's inference.
+Claude _guesses_ the GC. I preserve the raw permit's `applicant` and `contractor` fields alongside Claude's inference.
 
 Why does this matter? Take this example:
 
