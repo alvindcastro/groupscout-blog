@@ -2,6 +2,7 @@
 title: "Film crews as a signal"
 description: "Construction crews started it. Film and TV productions are an even stronger signal."
 pubDate: '2026-04-11'
+draft: true
 ---
 
 Group Scout first used construction crews as a signal. They are predictable and easy to reason about if you see them early.

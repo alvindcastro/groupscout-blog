@@ -1,8 +1,8 @@
 ---
 title: 'Cracking the PDF — no API, no problem (mostly)'
 description: 'Municipalities often publish building permits as weekly PDFs with no API. A pure Go PDF library returned zero rows. Then came the parser bug that looked like a config bug. Here is how all of it got fixed.'
-pubDate: '2026-04-03'
-draft: true
+pubDate: '2026-04-05'
+draft: false
 ---
 
 > This post focuses on one city’s permit PDFs, but these parsing problems are common to many “PDF‑as‑data” systems.

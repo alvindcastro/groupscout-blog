@@ -2,6 +2,7 @@
 title: 'My wife sells hotel rooms. I write Go.'
 description: 'How watching someone do a hard job well convinced me to build a tool to make it a little easier.'
 pubDate: '2026-03-28'
+draft: false
 ---
 
 My wife is good at her job.

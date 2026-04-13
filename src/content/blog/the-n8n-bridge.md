@@ -2,6 +2,7 @@
 title: 'The n8n bridge — connecting code to workflow'
 description: "Using n8n to handle the 'human' parts of the pipeline keeps the Go backend focused on its core."
 pubDate: '2026-04-06'
+draft: true
 ---
 
 I avoid writing code for *everything*. Developers often want to write a custom scheduler, a web UI, or a Gmail integration from scratch. But my time is limited, and those features aren't the "core."

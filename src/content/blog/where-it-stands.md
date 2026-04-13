@@ -2,7 +2,7 @@
 title: "Where it stands — Production-ready and scaling"
 description: 'The pipeline is a production-grade system with multiple sources, structured monitoring, and a Postgres backend.'
 pubDate: '2026-04-12'
-draft: false
+draft: true
 ---
 
 > This is a snapshot of the system as it stands in late March 2026.

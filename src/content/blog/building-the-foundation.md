@@ -1,8 +1,8 @@
 ---
 title: 'Build the foundation — store first, think later'
 description: 'Build the database layer before scraping code. The deduplication hash is the most important part of the pipeline.'
-pubDate: '2026-04-01'
-draft: true
+pubDate: '2026-04-04'
+draft: false
 ---
 
 When I started Group Scout, I built the storage layer before the scraper. No data to store yet. No enrichment to persist. Just tables, schemas, and a dedup hash function.

@@ -2,6 +2,7 @@
 title: "Production reliability: Sentry, logging, and health checks"
 description: "Transitioning from a local script to a production-grade system with error logging and health monitoring."
 pubDate: '2026-04-14'
+draft: true
 ---
 
 A scheduled data pipeline is only as good as your visibility into its failures. It *will* fail: external sites change, PDFs corrupt, and API credits expire.

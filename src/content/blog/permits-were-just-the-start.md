@@ -2,6 +2,7 @@
 title: "Permits were just the start"
 description: "Building permits were the obvious first signal, but they aren't the only — or best — one."
 pubDate: '2026-04-09'
+draft: true
 ---
 
 Building permits were the first signal for Group Scout. They are public and updated regularly. Most importantly, they appear weeks before crews arrive. This gap between *permit issuance* and *crew mobilization* allows hotel sales teams to act rather than react.

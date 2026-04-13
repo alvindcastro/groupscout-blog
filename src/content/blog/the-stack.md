@@ -2,6 +2,7 @@
 title: 'The stack — Go, Postgres, and pgvector'
 description: 'The technology behind Group Scout and why these choices fit a background data pipeline.'
 pubDate: '2026-04-12'
+draft: true
 ---
 
 I want to explain my technology choices. The *why* is more interesting than the stack itself.
