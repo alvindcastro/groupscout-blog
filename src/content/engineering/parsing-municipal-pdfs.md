@@ -3,7 +3,7 @@ title: "Parsing Municipal PDFs — Content-Aware Data Extraction in Go"
 description: "Why pure Go PDF libraries fail on municipal encoding and how to build a robust, content-aware parser for inconsistent data."
 pubDate: "2026-04-11"
 tags: ["go", "pdf", "parsing", "automation"]
-draft: true
+draft: false
 ---
 
 Many municipalities lack a proper data API. They publish weekly building permits as PDFs. To automate data collection, the system must download the PDF, extract text, and parse it into structured records.
@@ -59,6 +59,6 @@ This "content-aware" strategy handles variations in the PDF output. If a line lo
 
 ## Testing with Real Data
 
-I wrote thirty-two unit tests for the parser. I learned that testing with clean data is insufficient. I now use raw `pdftotext` output in test fixtures to catch the specific formatting quirks that occur in production.
+I learned that testing with clean data is insufficient. I now use raw `pdftotext` output in test fixtures to catch the specific formatting quirks that occur in production.
 
 A robust parser must expect noise. By focusing on content rather than position, the collector remains stable even when the PDF layout shifts.
