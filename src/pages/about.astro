@@ -2,60 +2,42 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="About | Group Scout" description="Who's behind groupscout and why it exists">
+<BaseLayout title="About | Group Scout" description="What Group Scout is, the problem it solves, and how it works">
   <div class="max-w-2xl mx-auto py-8">
-    <h1 class="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-8">About</h1>
+    <h1 class="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-8">About Group Scout</h1>
 
     <div class="prose prose-zinc dark:prose-invert max-w-none">
       <p>
-        Hi, I'm Alvin — a software developer based in BC. This project started by watching my
-        wife, a hotel sales manager near YVR, do her job and thinking:
-        <em>there has to be a better way to find these leads.</em>
+        Group Scout is a Go-based pipeline that monitors public data sources for hotel group sales
+        leads — construction projects, contract awards, film productions, sports events — and
+        surfaces actionable intelligence to a hotel sales team via Slack.
       </p>
 
       <p>
-        Hotel group sales is a particular kind of grind. You're not waiting for the phone to ring —
-        you're expected to go find the business. Construction crews housing dozens of workers for
-        months. Sports teams traveling for tournaments. Film productions booking large room blocks
-        on tight timelines. The goal is simple: find them before your competitor does.
+        The problem it solves: hotel group sales requires proactive outreach, not inbound waiting.
+        The signals that predict large room blocks exist in public data — building permits, contract
+        awards, permit filings — but they’re scattered, inconsistent, and slow to connect manually.
+        Group Scout automates the collection, deduplication, enrichment, and delivery.
       </p>
 
       <p>
-        The signals exist, but they're scattered. Building permits here. Contract awards there.
-        A relevant news story buried in a Google Alert. Manually connecting the dots is slow,
-        inconsistent, and easy to miss.
+        The stack: Go backend with a Postgres datastore, Claude for structured enrichment and lead
+        scoring, and a Slack Block Kit digest as the delivery layer. Data sources include municipal
+        building permits and contract award filings. The pipeline runs on a schedule and posts only
+        net-new leads above a configurable value threshold.
       </p>
 
       <p>
-        So I'm building
-        <a href="https://github.com/alvindcastro/groupscout">Group Scout</a> —
-        a Go-based backend that monitors public data for these signals and uses LLMs deliberately, as an assistive layer for enrichment and prioritization.
+        This site has two blogs. The <a href="/blog/">build log</a> traces the product journey —
+        decisions made, things that didn’t work, and the domain knowledge picked up along the way.
+        The <a href="/engineering/">engineering notes</a> go deeper on technical implementation:
+        architecture, data models, Go patterns, and LLM integration design.
       </p>
 
       <p>
-        This blog documents the process: technical decisions, false starts, the
-        <q>wait, how does hotel sales actually work?</q> moments, and (hopefully) the wins.
-        It also doubles as a learning exercise — both for me, and for anyone interested in where software actually helps
-        when solving real-world problems that aren't glamorous but matter.
+        The source is at <a href="https://github.com/alvindcastro/groupscout">github.com/alvindcastro/groupscout</a>.
+        For the person behind it, visit <a href="https://alvindcastro.github.io" target="_blank" rel="noopener noreferrer">alvindcastro.github.io</a>.
       </p>
-
-      <p>
-        <strong>The hotel is real.<br />
-          The problem is real.<br />
-          Let's see if the solution works.</strong>
-      </p>
-
-      <p>
-        If you’re curious about my professional background, my
-        <a
-            href={`${import.meta.env.BASE_URL}AlvinDeCastro.pdf`}
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-          resume (PDF)
-        </a> is available.
-      </p>
-
     </div>
   </div>
 </BaseLayout>
