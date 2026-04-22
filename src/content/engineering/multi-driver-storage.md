@@ -3,7 +3,7 @@ title: "The Multi-Driver Storage Strategy — Go, Postgres, and SQLite"
 description: "How to support production-grade Postgres and local-first SQLite in a single Go codebase without code duplication."
 pubDate: "2026-04-18"
 tags: ["go", "sql", "postgres", "sqlite", "architecture"]
-draft: true
+draft: false
 ---
 
 Production systems require the power of PostgreSQL for native UUIDs, JSONB indexing, and vector support. Local development, however, benefits from the zero-configuration simplicity of SQLite. Group Scout supports both with a single set of interfaces.

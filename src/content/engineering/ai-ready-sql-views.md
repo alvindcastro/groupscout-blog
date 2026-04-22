@@ -3,7 +3,7 @@ title: "AI-Ready SQL — Database Views as LLM Prompts"
 description: "How to use Postgres views to transform raw database records into dense, context-rich strings for LLM enrichment."
 pubDate: "2026-04-19"
 tags: ["sql", "ai", "postgres", "llm", "prompts"]
-draft: true
+draft: false
 ---
 
 Early versions of Group Scout built LLM prompts using Go's `fmt.Sprintf`. This method is fragile and scatters context logic across the codebase. I replaced it with a single Postgres view that pre-builds a dense, LLM-ready context string.
