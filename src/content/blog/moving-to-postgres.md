@@ -1,8 +1,8 @@
 ---
 title: "Migrating to Postgres and pgvector"
 description: "Why I moved from SQLite to PostgreSQL and how pgvector enables intelligent lead matching."
-pubDate: "2026-04-13"
-draft: true
+pubDate: "2026-04-18"
+draft: false
 ---
 
 SQLite was the obvious choice for Group Scout at the start. It is simple, portable, and requires no configuration.

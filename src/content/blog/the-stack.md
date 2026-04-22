@@ -1,8 +1,8 @@
 ---
 title: "The stack — Go, Postgres, and pgvector"
 description: "The technology behind Group Scout and why these choices fit a background data pipeline."
-pubDate: "2026-04-12"
-draft: true
+pubDate: "2026-04-19"
+draft: false
 ---
 
 I will explain my technology choices; the reasoning is more interesting than the stack.
