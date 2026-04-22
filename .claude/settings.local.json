@@ -17,7 +17,9 @@
       "mcp__plugin_claude-mem_mcp-search__smart_outline",
       "Bash(npx astro:*)",
       "Bash(npm i:*)",
-      "Bash(echo \"Exit code: $?\")"
+      "Bash(echo \"Exit code: $?\")",
+      "Bash(do echo:*)",
+      "Read(//c/Users/alvin/WebstormProjects/groupscout-blog/**)"
     ]
   }
 }

@@ -1,7 +1,7 @@
 ---
 title: "The Multi-Driver Storage Strategy — Go, Postgres, and SQLite"
 description: "How to support production-grade Postgres and local-first SQLite in a single Go codebase without code duplication."
-pubDate: "2026-04-14"
+pubDate: "2026-04-18"
 tags: ["go", "sql", "postgres", "sqlite", "architecture"]
 draft: true
 ---
